@@ -77,7 +77,8 @@ export class DirectorioIndexComponent implements OnInit {
 
   cambiarStatus(directory: Directorio){
     this.directorioService.update(directory).subscribe(
-      resp =>{ console.log(resp);
+      resp =>{ 
+        // console.log(resp);
         Swal.fire('Actualizado', `actualizado correctamente`, 'success');
         this.getDirectorios();
       }

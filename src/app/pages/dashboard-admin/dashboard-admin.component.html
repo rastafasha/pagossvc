@@ -52,10 +52,10 @@
                     <div class="card profile  animated fadeInUp shadow">
 
                         <div class="card-body profile-card pt-4   fichasmall">
-                            <div *ngIf="!userprofile.directories.image">
+                            <div *ngIf="!userprofile">
                                 <img src="./assets/images/no-image.jpg" style="height: 80px; width: 80px;" class="img-circle avatar">
                             </div>
-                            <div *ngIf="userprofile.directories.image">
+                            <div *ngIf="userprofile.directories[0].image">
                                 <img [src]="userprofile.directories[0].image | imagenPipe: 'directories'" style="height: 80px; width: 80px;" class="img-circle avatar">
 
                             </div>

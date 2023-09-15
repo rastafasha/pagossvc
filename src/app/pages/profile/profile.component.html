@@ -28,11 +28,11 @@
 
                     <div class="card">
                         <div class="card-body profile-card pt-4  fichasmall">
-                            <div *ngIf="!infoDirectorio">
+                            <div *ngIf="!userprofile">
                                 <img src="./assets/images/no-image.jpg" class="rounded-circle">
                             </div>
-                            <div *ngIf="infoDirectorio">
-                                <img [src]="infoDirectorio.image | imagenPipe: 'directories'" [alt]="user.username" class="rounded-circle">
+                            <div *ngIf="userprofile.directories[0].image">
+                                <img [src]="userprofile.directories[0].image | imagenPipe: 'directories'" [alt]="user.username" class="rounded-circle">
                             </div>
                             <div class="inffichasmall">
                                 <h2>{{userprofile.username}}</h2>
@@ -364,7 +364,7 @@
                                                 <input name="password2" type="password" class="form-control" id="password2" formControlName="password2" required>
                                             </div>
                                         </div> -->
-                                        <p *ngIf="passwordNoValido()">* El password deben ser iguales </p>
+                                        <!-- <p *ngIf="passwordNoValido()">* El password deben ser iguales </p> -->
                                         <div class="text-center">
                                             <input type="hidden" formControlName="id">
                                             <button class="btn btn-outline-success waves-effect waves-light m-r-10" type="submit">Cambiar Contraseña</button>
