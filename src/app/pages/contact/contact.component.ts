@@ -34,6 +34,11 @@ export class ContactComponent implements OnInit {
          menuLateral[i].classList.remove("active");
 
       }
+      var menuLateral = document.getElementsByClassName("mini-sidebar");
+      for (var i = 0; i<menuLateral.length; i++) {
+         menuLateral[i].classList.remove("active");
+
+      }
   }
 
   iniciarFormulario(){

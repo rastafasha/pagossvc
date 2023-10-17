@@ -6,7 +6,7 @@ import { environment } from "src/environments/environment";
 const base_url = environment.apiUrlMedia;
 export class User {
 
-    id: string;
+    id: number;
     // role_id: number = 3; // 3 = Rol miembro
     username: string = "";
     email: string = "";

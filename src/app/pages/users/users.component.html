@@ -41,7 +41,9 @@
                         <!-- buscador -->
                     </div>
                 </div>
-                <div class="card recent-sales overflow-auto">
+
+                <!-- desktop -->
+                <div class="card recent-sales overflow-auto desktop">
 
                     <div class="card-body">
 
@@ -89,7 +91,51 @@
                     </div>
 
                 </div>
+                <!-- desktop -->
 
+                <!-- movil -->
+                <div class=" movil ">
+                    <div class="card text-left usuariosmovil   shadow-sm" *ngFor="let user of usuarios |  paginate: { itemsPerPage: count, currentPage: p }">
+                  
+                        
+                        <div class="card-body inff">
+                            <div class="tooop">
+                              <!-- <img src="./assets/images/no-image.jpg"  class="card-img-top avatar"> -->
+                              <div class="idd">
+                                  <p class="card-text">Id:</p>
+                              <h4>{{user.id}}</h4>
+                              </div>
+                              <div class="rol">
+                                  <p class="card-text">role:<br>
+                                      <span class="badge bg-dark" *ngIf="user.role === 'SUPERADMIN'">SuperAdmin</span>
+                                      <span class="badge bg-primary" *ngIf="user.role === 'ADMIN'">Admin</span>
+                                      <span class="badge bg-success" *ngIf="user.role === 'MEMBER'">Miembro</span>
+                                      <span class="badge bg-danger" *ngIf="user.role === 'GUEST'">Invitado</span></p>
+                              </div>
+                              <div class="buton">
+                                  <a [routerLink]="['/dashboard/user/', user.id]">
+          
+                                      <button type="button" class="btn btn-primary" data-toggle="button"> <i class="fa fa-eye"></i></button>
+                                  </a>
+                                  <a (click)="eliminarUser(user.id)" class="cursor" data-toggle="tooltip" data-original-title="Borrar">
+                                    <div class="btn btn-danger"><i class="fa fa-trash"></i></div>
+                                </a>
+                                 </div>
+                          </div>
+                          <div class="us">
+                              <p class="card-text">Usuario:</p>
+                          <h4>{{user.username}}</h4>
+                          </div>
+                          
+                          
+                             
+                        </div>
+                      </div>
+                      <div class="clear"></div>
+                      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                </div>
+                
+                <!-- movil -->
             </div>
             <!-- End Recent Pagos -->
 

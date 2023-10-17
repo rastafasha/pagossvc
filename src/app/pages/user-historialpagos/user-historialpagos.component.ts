@@ -12,9 +12,10 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class UserHistorialpagosComponent implements OnInit {
   title = "Historial Mis Pagos";
-  userProfile!: User;
-  user: User;
-  id:any;
+  userProfile: User = null;
+  user: User = null;
+  payments: User = null;
+  id:any = null;
 
   p: number = 1;
   count: number = 8;
@@ -44,8 +45,9 @@ export class UserHistorialpagosComponent implements OnInit {
   getUserProfile(){
 
     this.userService.getUserById(this.id).subscribe((data: any) => {
-      this.userProfile = data[0];
-      // console.log('userProfile',this.userProfile)
+      // this.userProfile = data[0];
+      this.payments = data[0].payments;
+      // console.log('userProfile',this.payments)
     });
   }
 

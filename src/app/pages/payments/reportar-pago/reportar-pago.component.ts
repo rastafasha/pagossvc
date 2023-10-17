@@ -18,6 +18,8 @@ import { PlanesService } from 'src/app/services/planes.service';
 
 import { environment } from 'src/environments/environment';
 import { AccountService } from 'src/app/services/account.service';
+import { PaymentMethod } from 'src/app/models/paymentMethod';
+import { PaymentMethodService } from 'src/app/services/paymentMethod.service';
 
 interface HtmlInputEvent extends Event{
   target : HTMLInputElement & EventTarget;
@@ -56,7 +58,7 @@ export class ReportarPagoComponent implements OnInit {
   uploadError: boolean;
   imagePath: string;
 
-
+  paymentMethods: PaymentMethod;
 
   paymentSeleccionado:Payment;
 
@@ -109,6 +111,7 @@ export class ReportarPagoComponent implements OnInit {
     private storageService: StorageService,
     private planesService: PlanesService,
     private accountService: AccountService,
+    private paymentMethodService: PaymentMethodService,
   ) {
     this.user = this.usuarioService.user;
   }
@@ -118,6 +121,7 @@ export class ReportarPagoComponent implements OnInit {
     window.scrollTo(0,0);
     this.visible= false;
     this.getCurrencies();
+    this.getTiposdepagos();
     this.getPlanes();
     this.getUser();
     this.closeCart();
@@ -211,7 +215,10 @@ export class ReportarPagoComponent implements OnInit {
     formData.append('plan_id', this.PaymentRegisterForm.get('plan_id').value);
     formData.append('status', 'PENDING');
     formData.append('validacion', 'PENDING');
-    formData.append('image', this.PaymentRegisterForm.get('image').value);
+    
+    if(this.PaymentRegisterForm.value.image){
+      formData.append('image', this.PaymentRegisterForm.get('image').value);
+    }
 
 
     //crear
@@ -263,5 +270,16 @@ export class ReportarPagoComponent implements OnInit {
     this.storageService.clear();
   }
 
+
+  getTiposdepagos(): void {
+    // return this.planesService.carga_info();
+    this.paymentMethodService.getActivas().subscribe(
+      res =>{
+        this.paymentMethods = res;
+        error => this.error = error
+        // console.log(this.planes);
+      }
+    );
+  }
 
 }

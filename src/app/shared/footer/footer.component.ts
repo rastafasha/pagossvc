@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { User } from 'src/app/models/user';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-footer',
@@ -8,10 +11,23 @@ import { Component, OnInit } from '@angular/core';
 export class FooterComponent implements OnInit {
 
   year: number = new Date().getFullYear();
-
-  constructor() { }
-
-  ngOnInit(): void {
+  public user: User;
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private userService: UserService,
+  ) {
+    this.user = this.userService.user;
   }
 
+  ngOnInit(): void {
+    this.getUser();
+
+  }
+
+  getUser(): void {
+
+    this.user = JSON.parse(localStorage.getItem('user'));
+
+
+  }
 }

@@ -43,7 +43,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card recent-sales overflow-auto">
+                <div class="card recent-sales overflow-auto desktop">
 
 
                     <div class="card-body">
@@ -63,22 +63,19 @@
                             </thead>
                             <tbody>
                                 <tr *ngFor="let plan of planes">
-
-                                    <!-- <td>{{plan.id}}</td> -->
                                     <td>
-
                                         <div *ngIf="!plan.image ">
                                             <img [src]="plan.image | imagenPipe: 'plans'" style="height: 50px; width: 50px;" class="img-circle avatar">
                                         </div>
                                         <div *ngIf="plan.image">
                                             <img [src]="plan.image | imagenPipe: 'plans'" style="height: 50px; width: 50px;" class="img-circle avatar">
-
+        
                                         </div>
+                                        
                                     </td>
                                     <td>{{plan.name}}</td>
                                     <td>{{plan.price|currency}} </td>
                                     <td>
-                                        <!-- {{plan.status }} -->
                                         <span class="badge bg-success" *ngIf="plan.status === 'APROVED'">Aprobado</span>
                                         <span class="badge bg-primary" *ngIf="plan.status === 'PENDING'">Pendiente</span>
                                         <span class="badge bg-danger" *ngIf="plan.status === 'REJECTED'">Rechazado</span>
@@ -101,10 +98,40 @@
                             </tbody>
 
                         </table>
-
-
                     </div>
+                </div>
 
+                <div class=" movil ">
+                    <div class="card text-left usuariosmovil shadow-sm" *ngFor="let plan of planes">
+                        <div class="card-body inff">
+                            <div class="tooop">
+                                <div class="us">
+                                    <p class="card-text">Nombre:<br>
+                                        {{plan.name}}</p>
+                                </div>
+                              <div class="rol">
+                                  <p class="card-text">Status:<br>
+                                    <span class="badge bg-success" *ngIf="plan.status === 'APROVED'">Aprobado</span>
+                                        <span class="badge bg-primary" *ngIf="plan.status === 'PENDING'">Pendiente</span>
+                                        <span class="badge bg-danger" *ngIf="plan.status === 'REJECTED'">Rechazado</span>
+                              </div>
+                              <div class="buton">
+                                <a [routerLink]="['/dashboard/plan/edit', plan.id]" class="cursor" data-toggle="tooltip" data-original-title="Edit">
+                                    <i class="fa fa-edit text-success" style="font-size: 18px;"></i>
+                                </a>
+                                <a (click)="eliminarPlan(plan.id)" class="cursor" data-toggle="tooltip" data-original-title="Borrar">
+                                    <i class="fa fa-trash text-danger" style="font-size: 18px; margin-left: 10px; margin-right: 10px;"></i>
+                                </a>
+                                 </div>
+                          </div>
+                          
+                        <div class="mail">
+                            <p class="card-text">Fecha:<br>
+                                {{plan.created_at | date:'MMM d, y, h:mm:ss a'}}</p>
+                        </div>
+                        </div>
+                      </div>
+                      <div class="clear"></div>
                 </div>
             </div>
             <!-- End Recent Pagos -->

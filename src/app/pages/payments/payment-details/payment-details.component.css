@@ -4,6 +4,19 @@
     flex-flow: row;
     font-size: 15px;
     flex-direction: row;
+
+
+}
+
+.infopago{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+    flex-flow: wrap;
+    justify-content: space-between;
+    box-sizing: content-box;
+    gap: 1px;
+    align-self: flex-start;
 }
 
 .pagodetail p {
@@ -14,10 +27,10 @@
 .imagepago {
     width: 70%;
     padding: 10px;
-    border: 1px solid #ccc;
     margin-top: 10px;
+    margin: auto;
+    display: block;
 }
-
 @media (max-width: 768px) {
     .pagodetail {
         display: flex;

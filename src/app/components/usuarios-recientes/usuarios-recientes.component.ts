@@ -11,7 +11,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class UsuariosRecientesComponent implements OnInit {
 
-  users: User;
+  recientes: User;
   error: string;
   constructor(
     private userService: UserService,
@@ -24,7 +24,7 @@ export class UsuariosRecientesComponent implements OnInit {
   getRecentUsers(): void {
     this.userService.getRecientes().subscribe(
       res =>{
-        this.users = res;
+        this.recientes = res;
         error => this.error = error
         // console.log(this.usuarios);
       }

@@ -1,0 +1,162 @@
+<!-- =======| Main |======= -->
+
+<div class="container animated fadeInUp" id="main" class="main" role="main" name="users">
+
+    <div class="col-xs-12">
+        <div class="leftside">
+            <!-- Page Title -->
+            <div class="pagetitle">
+                <h1><i class="bx bxs-user-account"></i> {{title}}</h1>
+                <nav>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a routerLink="/"><i class="bi bi-house"></i> Inicio</a></li>
+                        <li class="breadcrumb-item"><a routerLink="/dashboard/configuraciones">Configuraciones</a></li>
+                        <li class="breadcrumb-item"><a routerLink="/dashboard/paymentmethods">Tipos de pago</a></li>
+                        <li class="breadcrumb-item active">{{title}}</li>
+                    </ol>
+                </nav>
+            </div>
+            <!-- End Page Title -->
+        </div>
+        <div class="buton">
+            <button class="btn btn-outline-danger pull-right" href="javascript:void(0)"
+                (click)="goBack()">Volver</button>
+        </div>
+        <div class="clear"></div>
+
+
+
+        <section class="section dashboard">
+
+            <div class="container">
+
+
+                <form enctype="multipart/form-data" [formGroup]="planForm" (ngSubmit)="editPlan()">
+                    <div class="form-group col-xs-12 col-sm-6 ">
+                        <label for="exampleInputEmail1">Tipo de Pago<span class="required">*</span></label>
+                        <select name="" id="input" class="form-control" formControlName="type" onChange="mostrar(this.value);">
+                            <option value="seleccione">Seleccione</option>
+                            <option value="paypal">Paypal</option>
+                            <option value="transferencia">Banco</option>
+                            <option value="pagomovil">Pago Movil</option>
+                        </select>
+
+                    </div>
+                    <div class="clear"></div>
+
+                    <div class="container">
+
+                        <!-- paypal -->
+                        <div *ngIf="planSeleccionado.type == 'paypal'"  id="paypal" class="card p-3">
+                            <h4>Paypal</h4>
+                            <div class="col-xs-12 ">
+                                <div class="form-group col-sm-6">
+                                    <label for="exampleInputEmail1">Modo Prueba?<span class="required">*</span></label>
+                                    <select name="" id="input" class="form-control" formControlName="sandboxMode">
+                                        <option value="">Seleccione</option>
+                                        <option value="true">Si</option>
+                                        <option value="false">No</option>
+                                    </select>
+
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label for="exampleInputEmail1">Paypal Secret key</label>
+                                    <input formControlName="paypalSecret" type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 ">
+                                <div class="form-group col-sm-6">
+                                    <label for="exampleInputEmail1">ClientId Paypal</label>
+                                    <input formControlName="clientId" type="text" class="form-control">
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label for="exampleInputEmail1">Email</label>
+                                    <input formControlName="email" type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- paypal -->
+                        <!-- transferencia -->
+                        <div *ngIf="planSeleccionado.type == 'transferencia'"  id="transferencia" class="card p-3">
+                            <h4>Transferencia</h4>
+                            <div class="col-xs-12 ">
+                                <div class="form-group col-sm-6">
+                                    <label for="exampleInputEmail1">Tipo de Cuenta<span
+                                            class="required">*</span></label>
+                                    <select name="" id="input" class="form-control" formControlName="bankAccountType">
+                                        <option value="">Seleccione</option>
+                                        <option value="ahorro">Ahorro</option>
+                                        <option value="corriente">Corriente</option>
+                                        <option value="cheques">de cheques</option>
+                                    </select>
+
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label for="exampleInputEmail1">bankName</label>
+                                    <input formControlName="bankName" type="text" class="form-control">
+                                </div>
+
+
+                            </div>
+                            <div class="col-xs-12 ">
+
+                                <div class="form-group col-sm-6">
+                                    <label for="exampleInputEmail1">bankAccount</label>
+                                    <input formControlName="bankAccount" type="text" class="form-control">
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label for="exampleInputEmail1">user (opcional)</label>
+                                    <input formControlName="user" type="text" class="form-control">
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- transferencia -->
+                        <!-- pagomovil -->
+                        <div *ngIf="planSeleccionado.type == 'pagomovil'"  id="pagomovil" class="card p-3">
+                            <h4>PagoMovil</h4>
+                            <div class="col-xs-12 ">
+                                <div class="form-group col-sm-6">
+                                    <label for="exampleInputEmail1">Ci o RIF</label>
+                                    <input formControlName="ciorif" type="text" class="form-control">
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label for="exampleInputEmail1">Télefono</label>
+                                    <input formControlName="telefono" type="text" class="form-control">
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label for="exampleInputEmail1">bankName</label>
+                                    <input formControlName="bankName" type="text" class="form-control">
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label for="exampleInputEmail1">bankAccount</label>
+                                    <input formControlName="bankAccount" type="text" class="form-control">
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label for="exampleInputEmail1">user (opcional)</label>
+                                    <input formControlName="user" type="text" class="form-control">
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- pagomovil  -->
+                        <div class="clear"></div>
+                        <input type="hidden" formControlName="id">
+
+                        <button (click)="editPlan()" class="btn btn-primary">Submit</button>
+
+                    </div>
+
+
+
+                </form>
+
+
+
+            </div>
+
+        </section>
+
+    </div>
+</div>
+<!--/main-->

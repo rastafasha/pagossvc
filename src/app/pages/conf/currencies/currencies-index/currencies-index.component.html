@@ -43,7 +43,7 @@
                 </div>
 
 
-                <div class="card recent-sales overflow-auto">
+                <div class="card recent-sales overflow-auto desktop">
 
 
                     <div class="card-body">
@@ -81,16 +81,40 @@
 
                         </table>
 
-                        <!-- <table class="table table-borderless" *ngIf="loading">
-                        <tfoot>
-                            <tr>
-                                <td colspan="6">&nbsp; Encontrados {{ usersCount }} usuarios</td>
-                            </tr>
-                        </tfoot>
-                    </table> -->
 
                     </div>
 
+                </div>
+
+                <div class=" movil ">
+                    <div class="card text-left usuariosmovil shadow-sm" *ngFor="let currency of currenciesAll ">
+                        <div class="card-body inff">
+                            <div class="tooop">
+                                <div class="us">
+                                    <p class="card-text">Id:<br>
+                                        {{currency.id}}</p>
+                                </div>
+                                <div class="us">
+                                    <p class="card-text">Nombre:<br>
+                                        {{currency.name}}</p>
+                                </div>
+                              <div class="buton">
+                                <a [routerLink]="['/dashboard/currency/edit', currency.id]" class="cursor" data-toggle="tooltip" data-original-title="Edit">
+                                    <i class="fa fa-edit text-success" style="font-size: 18px;"></i>
+                                </a>
+                                <a (click)="eliminarCurrency(currency.id)" class="cursor" data-toggle="tooltip" data-original-title="Borrar">
+                                    <i class="fa fa-trash text-danger" style="font-size: 18px; margin-left: 10px; margin-right: 10px;"></i>
+                                </a>
+                                 </div>
+                          </div>
+                         
+                        <div class="mail">
+                            <p class="card-text">Creado:<br>
+                                {{currency.created_at | date:'MMM d, y, h:mm:ss a'}}</p>
+                        </div>
+                        </div>
+                      </div>
+                      <div class="clear"></div>
                 </div>
             </div>
             <!-- End Recent Pagos -->

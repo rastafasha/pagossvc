@@ -23,6 +23,9 @@ export class RolesViewComponent implements OnInit {
   msm_error: string;
   roles;
 
+  query:string ='';
+  usuarios: any;
+
   rolesSelected:number;
 
   rolesForm: FormGroup;
@@ -41,7 +44,7 @@ export class RolesViewComponent implements OnInit {
   getUsers(): void {
     this.userService.getAll().subscribe(
       res =>{
-        this.users = res;
+        this.usuarios = res;
         error => this.error = error;
       }
     );
@@ -78,5 +81,16 @@ export class RolesViewComponent implements OnInit {
   goBack() {
     this.location.back(); // <-- go back to previous location on cancel
   }
+
+  search() {
+    return this.userService.search(this.query).subscribe(
+      res=>{
+        this.usuarios = res;
+        if(!this.query){
+          this.ngOnInit();
+        }
+      });
+  }
+
 
 }

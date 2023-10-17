@@ -27,7 +27,7 @@
     <!-- End Page Title -->
 
     <!-- banners planes -->
-    <div *ngIf="userprofile.role == 'GUEST'">
+    <div *ngIf="user.role == 'GUEST'">
         <app-bannerplanes></app-bannerplanes>
     </div>
 
@@ -49,13 +49,16 @@
 
                     <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-                        <div *ngIf="!userprofile.directories.image">
-                            <img src="./assets/images/no-image.jpg" style="height: 80px; width: 80px;" class="img-circle avatar">
+                        <div *ngIf="userdirectory">
+                            <div *ngIf="!userdirectory.image">
+                                <img src="./assets/images/no-image.jpg" style="height: 80px; width: 80px;" class="img-circle avatar">
+                            </div>
+                            <div *ngIf="userdirectory.image">
+                                <img [src]="userdirectory.image | imagenPipe: 'directories'" style="height: 80px; width: 80px;" class="img-circle avatar">
+    
+                            </div>
                         </div>
-                        <div *ngIf="userprofile.directories.image">
-                            <img [src]="userprofile.directories[0].image | imagenPipe: 'directories'" style="height: 80px; width: 80px;" class="img-circle avatar">
-
-                        </div>
+                        
                         <h2>{{user.username}}</h2>
 
                         <p>Usuario desde:<br>{{user.created_at | date:'MMM d, y, h:mm:ss a'}}</p>
@@ -92,14 +95,20 @@
                                     <p>Cancela o reporta el pago de tu membresia para ver mas opociones</p>
                                 </div>
 
-                                <div *ngIf="user.role === 'MEMBER'">
+                                <div *ngIf="user.role === 'MEMBER' && !userdirectory">
                                     <h4>Bienvenido!</h4>
                                     <p>Ahora puedes editar tu informacion del directorio de SVCBMF</p>
                                     <a [routerLink]="['/dashboard/profile/', user.id]">
                                         <button class="btn btn-outline-success">Ir a Mi Cuenta</button>
                                     </a>
                                 </div>
-                                <div *ngIf="user.role === 'MEMBER'">
+                                <div *ngIf="user.role === 'MEMBER' && userdirectory">
+                                    
+                                    <a [routerLink]="['/dashboard/profile/', user.id]">
+                                        <button class="btn btn-outline-success">Ir a Mi Cuenta</button>
+                                    </a>
+                                </div>
+                                <div *ngIf="user.role === 'MEMBER' && userdirectory">
                                     <app-news></app-news>
                                 </div>
                             </div>

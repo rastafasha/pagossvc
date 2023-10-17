@@ -235,7 +235,7 @@ this.user = this.userService.user;
 
 
 
-  guardarDirectorio() {
+  guardarDirectorio() {debugger
     this.submitted = true;
     if(this.directorioForm.invalid){
       return;
@@ -265,7 +265,11 @@ this.user = this.userService.user;
     formData.append('twitter', this.directorioForm.get('twitter').value);
     formData.append('linkedin', this.directorioForm.get('linkedin').value);
     formData.append('status', 'PENDING');
-    formData.append('image', this.directorioForm.get('image').value);
+    
+    if(this.directorioForm.value.image){
+      formData.append('image', this.directorioForm.get('image').value);
+    }
+
     formData.append('user_id', this.directorioForm.get('user_id').value);
     formData.append('vcard', this.vCardInfo);
 

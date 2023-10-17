@@ -25,7 +25,14 @@ export class HelpComponent implements OnInit {
          menuLateral[i].classList.remove("active");
 
       }
+
+      var menuLateral = document.getElementsByClassName("mini-sidebar");
+      for (var i = 0; i<menuLateral.length; i++) {
+         menuLateral[i].classList.remove("active");
+
+      }
   }
+  
 
   goBack() {
     this.location.back(); // <-- go back to previous location on cancel

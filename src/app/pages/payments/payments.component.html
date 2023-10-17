@@ -17,7 +17,8 @@
             <!-- End Page Title -->
         </div>
         <div class="buton">
-            <button class="btn btn-outline-danger pull-right" href="javascript:void(0)" (click)="goBack()">Volver</button>
+            <button class="btn btn-outline-danger pull-right" href="javascript:void(0)"
+                (click)="goBack()">Volver</button>
         </div>
 
         <div class="clear"></div>
@@ -31,19 +32,24 @@
                 <form class="form-horizontal">
                     <div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4">
                         <div class="input-group">
-                            <input type="search" name="search" type="text" class="form-control col-xs-12" placeholder="Buscar.." [(ngModel)]="query" aria-describedby="button-addon1" class="form-control border-0 bg-light">
+                            <input type="search" name="search" type="text" class="form-control col-xs-12"
+                                placeholder="Buscar.." [(ngModel)]="query" aria-describedby="button-addon1"
+                                class="form-control border-0 bg-light">
                             <div class="input-group-append">
-                                <button id="button-addon1" type="submit" class="btn btn-link text-primary" (click)="search()" name="submit" data-toggle="tooltip" title="mostrar todos"><i class="fa fa-search"></i></button>
+                                <button id="button-addon1" type="submit" class="btn btn-link text-primary"
+                                    (click)="search()" name="submit" data-toggle="tooltip" title="mostrar todos"><i
+                                        class="fa fa-search"></i></button>
                             </div>
                         </div>
                     </div>
                 </form>
                 <!-- buscador -->
-                <div class="card recent-sales overflow-auto">
+                <div class="card recent-sales overflow-auto desktop">
 
 
                     <div class="card-body">
-                        <h5 class="card-title"> <i class="bi bi-currency-exchange"> </i> Transacciones <span>| Todas</span>
+                        <h5 class="card-title"> <i class="bi bi-currency-exchange"> </i> Transacciones <span>|
+                                Todas</span>
                         </h5>
 
                         <table class="table table-borderless datatable">
@@ -62,22 +68,29 @@
                             </thead>
                             <tbody>
                                 <tr *ngFor="let pago of payments |  paginate: { itemsPerPage: count, currentPage: p }">
-                                    <th scope="row"><a [routerLink]="['/dashboard/payment-detail', pago.id]">{{pago.referencia}}</a></th>
+                                    <th scope="row"><a
+                                            [routerLink]="['/dashboard/payment-detail', pago.id]">{{pago.referencia}}</a>
+                                    </th>
                                     <th><a [routerLink]="['/dashboard/user/', pago.user_id]">{{pago.user_id}}</a></th>
                                     <td>{{pago.metodo}}</td>
-                                    <td>{{pago.monto}}</td>
+                                    <td>{{pago.monto | currency}}</td>
                                     <td>{{pago.currencies[0].name}}</td>
 
                                     <td>
-                                        <span class="badge bg-success" *ngIf="pago.status === 'APPROVED'">Aprobado</span>
-                                        <span class="badge bg-primary" *ngIf="pago.status === 'PENDING'">Pendiente</span>
-                                        <span class="badge bg-danger" *ngIf="pago.status === 'REJECTED'">Rechazado</span>
-                                        <!-- <span class="badge bg-success">{{pago.status}}</span> -->
+                                        <span class="badge bg-success"
+                                            *ngIf="pago.status === 'APPROVED'">Aprobado</span>
+                                        <span class="badge bg-primary"
+                                            *ngIf="pago.status === 'PENDING'">Pendiente</span>
+                                        <span class="badge bg-danger"
+                                            *ngIf="pago.status === 'REJECTED'">Rechazado</span>
                                     </td>
                                     <td>
-                                        <span class="badge bg-success" *ngIf="pago.validacion === 'APPROVED'">Aprobado</span>
-                                        <span class="badge bg-primary" *ngIf="pago.validacion === 'PENDING'">Pendiente</span>
-                                        <span class="badge bg-danger" *ngIf="pago.validacion === 'REJECTED'">Rechazado</span>
+                                        <span class="badge bg-success"
+                                            *ngIf="pago.validacion === 'APPROVED'">Aprobado</span>
+                                        <span class="badge bg-primary"
+                                            *ngIf="pago.validacion === 'PENDING'">Pendiente</span>
+                                        <span class="badge bg-danger"
+                                            *ngIf="pago.validacion === 'REJECTED'">Rechazado</span>
                                         <!-- <span class="badge bg-success">{{pago.status}}</span> -->
                                     </td>
                                     <td>{{pago.created_at | date:'MMM d, y, h:mm:ss a'}}</td>
@@ -99,6 +112,54 @@
                         <pagination-controls (pageChange)="p = $event"></pagination-controls>
                     </div>
 
+                </div>
+
+                <!-- movil -->
+                <div class=" movil ">
+                    <div class="card text-left usuariosmovil   shadow-sm"
+                        *ngFor="let pago of payments |  paginate: { itemsPerPage: count, currentPage: p }">
+
+
+                        <div class="card-body inff">
+                            <div class="tooop">
+                                <!-- <img src="./assets/images/no-image.jpg"  class="card-img-top avatar"> -->
+                                <div class="idd">
+                                    <p class="card-text">Referencia:</p>
+                                    <h4>{{pago.referencia}}</h4>
+                                </div>
+
+                                <div class="buton">
+                                    <a [routerLink]="['/dashboard/payment-detail', pago.id]">
+
+                                        <button type="button" class="btn btn-primary" data-toggle="button"> <i
+                                                class="fa fa-eye"></i></button>
+                                    </a>
+                                    <a [routerLink]="['/dashboard/payment/edit/', pago.id]">
+                                        <button class="btn btn-success"><i class="fa fa-pencil"></i></button>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="compra">
+                                <div class="us">
+                                    <p class="card-text">Metodo de pago:</p>
+                                    <h4>{{pago.metodo}}</h4>
+                                </div>
+                                <div class="monto">
+                                    <p class="card-text">Monto:</p>
+                                    <h4>{{pago.monto}}</h4>
+                                </div>
+                            </div>
+                            <div class="mail">
+                                <p class="card-text">Fecha:<br>
+                                    {{pago.created_at | date:'MMM d, y, h:mm:ss a'}}</p>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <pagination-controls (pageChange)="p = $event"></pagination-controls>
                 </div>
             </div>
             <!-- End Recent Pagos -->

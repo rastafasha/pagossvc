@@ -310,7 +310,9 @@ export class UserDetailsComponent implements OnInit {
     formData.append('instagram', this.directorioForm.get('instagram')?.value);
     formData.append('twitter', this.directorioForm.get('twitter')?.value);
     formData.append('linkedin', this.directorioForm.get('linkedin')?.value);
-    formData.append('image', this.directorioForm.get('image')?.value);
+    if(this.directorioForm.value.image){
+      formData.append('image', this.directorioForm.get('image').value);
+    }
     formData.append('vcard', this.vCardInfo);
 
 

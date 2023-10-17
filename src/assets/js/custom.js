@@ -1,4 +1,4 @@
-$(function() {
+function HOMEINIT($, undefined) {
     "use strict";
     $(function() {
         $(".preloader").fadeOut();
@@ -149,4 +149,4 @@ $(function() {
         $(this).closest('.card').removeClass().slideUp('fast');
     });
 
-});
+};

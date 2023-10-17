@@ -8,17 +8,17 @@
                 <h2>Membresía</h2><br>
                 <p>Actualiza o paga tu membresía aquí </p>
                 <br>
-                <div *ngFor="let plan of planes">
-                    <h2>${{plan.price}}</h2>
+                <div *ngFor="let plan of planes; let i = index">
+                    <h3>${{plan.price}}</h3>
                 </div>
 
                 <br>
                 <p>Utilizando su metodo de pago preferido </p>
-                <ul>
-                    <li class="badge bg-primary">Paypal</li>
-                    <li class="badge bg-primary">Zelle</li>
-                    <li class="badge bg-primary">Pago Móvil</li>
-                    <li class="badge bg-primary">Transferencia</li>
+                <ul class="icons">
+                    <li class="badge bg-primary"><i class="fa fa-paypal"></i>Paypal</li>
+                    <li class="badge bg-primary"><i class="fa fa-paypal"></i>Zelle</li>
+                    <li class="badge bg-primary"><i class="fa fa-paypal"></i>Pago Móvil</li>
+                    <li class="badge bg-primary"><i class="fa fa-desktop"></i>Transferencia</li>
                 </ul>
                 <a routerLink="/dashboard/planes/all">
                     <div class="button btn btn-outline-success">Ver Planes</div>

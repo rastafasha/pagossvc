@@ -25,13 +25,15 @@ export class HeaderComponent implements OnInit {
   private linktTheme = document.querySelector('.dark');// se comunica el id pulsado
 
 
-  userprofile!: any;
+  userprofile: any = null;
 
-  infoDirectorio:Directorio;
+  infoDirectorio:Directorio = null;
+  image:Directorio = null;
 
-  user: User;
+  user: User = null;
+  userdirectory: User = null;
   error: string;
-  id:any;
+  id:any = null;
 
   constructor(
     private userService: UserService,
@@ -84,6 +86,7 @@ export class HeaderComponent implements OnInit {
     this.userService.getUserById(id).subscribe(
       res =>{
         this.userprofile = res[0];
+        this.userdirectory = res[0].directories[0];
         error => this.error = error
       }
       );

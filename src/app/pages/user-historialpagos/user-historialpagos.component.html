@@ -16,8 +16,9 @@
             <!-- End Page Title -->
         </div>
         <div class="buton">
-            <button class="btn btn-outline-danger pull-right" href="javascript:void(0)" (click)="goBack()">Volver</button>
-            <button class="btn btn-outline-success pull-right" routerLink="/dashboard/realizar-pago">Realizar un Pago</button>
+            <button class="btn btn-outline-danger pull-right" href="javascript:void(0)"
+                (click)="goBack()">Volver</button>
+            <button class="btn btn-outline-success pull-right" routerLink="/dashboard/realizar-pago">Pagar</button>
         </div>
         <div class="clear"></div>
 
@@ -26,7 +27,7 @@
 
 
             <!-- Recent Pagos -->
-            <div class="col-12">
+            <div class="col-12 desktop">
                 <div class="card recent-sales overflow-auto">
 
                     <div class="filter">
@@ -43,7 +44,8 @@
                     </div>
 
                     <div class="card-body">
-                        <h5 class="card-title"> <i class="bi bi-currency-exchange"> </i> Transacciones <span>| Todas</span>
+                        <h5 class="card-title"> <i class="bi bi-currency-exchange"> </i> Transacciones <span>|
+                                Todas</span>
                         </h5>
 
                         <table class="table table-borderless datatable">
@@ -62,28 +64,39 @@
                             </thead>
                             <tbody>
 
-                                <tr *ngFor="let userpayment of userProfile.payments|  paginate: { itemsPerPage: count, currentPage: p } ">
-                                    <th scope="row"><a [routerLink]="['/dashboard/payment-detail', userpayment.id]">{{userpayment.id}}</a></th>
+                                <tr
+                                    *ngFor="let userpayment of payments|  paginate: { itemsPerPage: count, currentPage: p } ">
+                                    <th scope="row"><a
+                                            [routerLink]="['/dashboard/payment-detail', userpayment.id]">{{userpayment.id}}</a>
+                                    </th>
                                     <td>
-                                        <img [src]="userpayment.image | imagenPipe: 'payments'" style="width:60px; height: 60px;" alt="">
+                                        <img [src]="userpayment.image | imagenPipe: 'payments'"
+                                            style="width:60px; height: 60px;" alt="">
                                     </td>
-                                    <th scope="row"><a [routerLink]="['/dashboard/payment-detail', userpayment.id]">{{userpayment.referencia}}</a></th>
+                                    <th scope="row"><a
+                                            [routerLink]="['/dashboard/payment-detail', userpayment.id]">{{userpayment.referencia}}</a>
+                                    </th>
 
                                     <td>{{userpayment.metodo}}</td>
                                     <td>{{userpayment.monto}} </td>
                                     <td>{{userpayment.currency_id}}</td>
                                     <td>{{userpayment.created_at | date:'MMM d, y, h:mm:ss a'}}</td>
                                     <td>
-                                        <!-- <span class="badge bg-success">{{userpayment.status}}</span> -->
-                                        <span class="badge bg-success" *ngIf="userpayment.status === 'APPROVED'">Aprobado</span>
-                                        <span class="badge bg-primary" *ngIf="userpayment.status === 'PENDING'">Pendiente</span>
-                                        <span class="badge bg-danger" *ngIf="userpayment.status === 'REJECTED'">Rechazado</span>
+                                        <span class="badge bg-success"
+                                            *ngIf="userpayment.status === 'APPROVED'">Aprobado</span>
+                                        <span class="badge bg-primary"
+                                            *ngIf="userpayment.status === 'PENDING'">Pendiente</span>
+                                        <span class="badge bg-danger"
+                                            *ngIf="userpayment.status === 'REJECTED'">Rechazado</span>
                                     </td>
                                     <td>
                                         <!-- <span class="badge bg-success">{{userpayment.validacion}}</span> -->
-                                        <span class="badge bg-success" *ngIf="userpayment.validacion === 'APPROVED'">Aprobado</span>
-                                        <span class="badge bg-primary" *ngIf="userpayment.validacion === 'PENDING'">Pendiente</span>
-                                        <span class="badge bg-danger" *ngIf="userpayment.validacion === 'REJECTED'">Rechazado</span>
+                                        <span class="badge bg-success"
+                                            *ngIf="userpayment.validacion === 'APPROVED'">Aprobado</span>
+                                        <span class="badge bg-primary"
+                                            *ngIf="userpayment.validacion === 'PENDING'">Pendiente</span>
+                                        <span class="badge bg-danger"
+                                            *ngIf="userpayment.validacion === 'REJECTED'">Rechazado</span>
                                     </td>
 
                                 </tr>
@@ -94,6 +107,72 @@
                     </div>
 
                 </div>
+            </div>
+
+            <div class=" movil ">
+                <div class="card text-left usuariosmovil   shadow-sm"
+                    *ngFor="let userpayment of payments|  paginate: { itemsPerPage: count, currentPage: p } ">
+
+
+                    <div class="card-body inff">
+                        <div class="tooop top4">
+                            <!-- <img src="./assets/images/no-image.jpg"  class="card-img-top avatar"> -->
+                            <div class="idd">
+                                <p class="card-text">Referencia:</p>
+                                <h4>{{userpayment.referencia | slice:0:8}}...</h4>
+                            </div>
+                            <div class="stat">
+                                <p class="card-text">Status:<br>
+                                    <span class="badge bg-success"
+                                        *ngIf="userpayment.status === 'APPROVED'">Aprobado</span>
+                                    <span class="badge bg-primary"
+                                        *ngIf="userpayment.status === 'PENDING'">Pendiente</span>
+                                    <span class="badge bg-danger"
+                                        *ngIf="userpayment.status === 'REJECTED'">Rechazado</span>
+                                </p>
+                                
+                            </div>
+                            <div class="vald">
+                                <p class="card-text">Validacion:<br>
+                                    <span class="badge bg-success"
+                                        *ngIf="userpayment.validacion === 'APPROVED'">Aprobado</span>
+                                    <span class="badge bg-primary"
+                                        *ngIf="userpayment.validacion === 'PENDING'">Pendiente</span>
+                                    <span class="badge bg-danger"
+                                        *ngIf="userpayment.validacion === 'REJECTED'">Rechazado</span>
+                                </p>
+                                
+                            </div>
+                            <div class="buton buton2">
+                                <a [routerLink]="['/dashboard/payment-detail', userpayment.id]">
+
+                                    <button type="button" class="btn btn-primary" data-toggle="button"> <i
+                                            class="fa fa-eye"></i></button>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="compra">
+                            <div class="us">
+                                <p class="card-text">Metodo de pago:</p>
+                                <h4>{{userpayment.metodo}}</h4>
+                            </div>
+                            <div class="monto">
+                                <p class="card-text">Monto:</p>
+                                <h4>{{userpayment.monto}}</h4>
+                            </div>
+                        </div>
+                        <div class="mail">
+                            <p class="card-text">Fecha:<br>
+                                {{userpayment.created_at | date:'MMM d, y, h:mm:ss a'}}</p>
+                        </div>
+
+
+
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
             </div>
             <!-- End Recent Pagos -->
         </section>

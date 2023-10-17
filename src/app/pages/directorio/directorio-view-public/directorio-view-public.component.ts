@@ -19,13 +19,15 @@ export class DirectorioViewPublicComponent implements OnInit {
 
 
   title = "Detalles del directorio";
-  user: User;
-  userprofile: User;
-  error: string;
-  directories: Directorio;
-  directory: Directorio;
-  payments: Payment;
-  id:number;
+  user: User =null;
+  userprofile: User =null;
+  error: string =null;
+  directories: Directorio =null;
+  directory: Directorio =null;
+  userdirectory: Directorio =null;
+  payments: Payment =null;
+  id:number =null;
+  userId:Directorio=null;
 
   rolesSelected:number;
   href : string;
@@ -45,9 +47,8 @@ export class DirectorioViewPublicComponent implements OnInit {
   ngOnInit(): void {
     window.scrollTo(0,0);
     this.closeMenu();
-    this.activatedRoute.params.subscribe( ({id}) => this.getDirectory(id));
     this.activatedRoute.params.subscribe( ({id}) => this.getUserRemoto(id));
-
+    // this.activatedRoute.params.subscribe( ({id}) => this.getDirectory(id));
   }
 
   closeMenu(){
@@ -59,11 +60,7 @@ export class DirectorioViewPublicComponent implements OnInit {
   }
 
   getUser(): void {
-
     this.user = JSON.parse(localStorage.getItem('user'));
-    // return this.userService.getUserLocalStorage();
-    // console.log(this.user);
-
 
   }
 
@@ -71,23 +68,20 @@ export class DirectorioViewPublicComponent implements OnInit {
     this.userService.getUserById(+id).subscribe(
       res =>{
         this.userprofile = res[0];
+        this.directory = res[0].directories[0];
         error => this.error = error
-        // console.log(this.userprofile);
+        console.log(this.userprofile);
+        console.log(this.directory);
       }
     );
-    // id = this.userprofile.id;
-
-
   }
 
   getDirectory(id:number): void {
-    // id = this.directory.user_id;
-
-    this.directorioService.getDirectorio(id).subscribe(
+    this.directorioService.getDirectoriobyUser(id).subscribe(
       res =>{
         this.directory = res;
         error => this.error = error;
-        // console.log(this.directory);
+        console.log(this.directory);
       }
     );
   }

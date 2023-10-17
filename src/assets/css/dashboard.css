@@ -57,6 +57,17 @@ p {
     background-color: #f9f8f8 !important;
     color: var(--azul);
 }
+.info ul.icons li {
+    font-size: 16px;
+    margin-right: 10px;
+    background-color: #f9f8f8 !important;
+    color: var(--azul);
+    display: flex;
+    flex-direction: column;
+    height: 50px;
+    justify-content: space-between;
+    font-variant-caps: small-caps;
+}
 
 .instruccioness b,
 .datos b,
@@ -185,6 +196,9 @@ p {
 }
 
 @media(max-width:768px) {
+    .acces-icons {
+        display: none;
+    }
     .instruccioness {
         flex-direction: row;
     }
@@ -223,6 +237,7 @@ p {
         flex-direction: column;
     }
     .acces-icons {
+        display: none;
         width: calc(100% - 10px);
         overflow: hidden;
         overflow-x: scroll;
@@ -238,6 +253,7 @@ p {
         width: auto;
     }
     .pagetitle .right {
+        display: none;
         width: auto !important;
         background-image: none;
     }

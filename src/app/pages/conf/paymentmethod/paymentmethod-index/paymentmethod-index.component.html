@@ -1,0 +1,151 @@
+<!-- =======| Main |======= -->
+<div class="container animated fadeInUp" id="main" class="main" role="main" name="users">
+
+    <div class="col-xs-12">
+        <div class="leftside">
+            <!-- Page Title -->
+            <div class="pagetitle">
+                <h1><i class="bx bxs-user-account"></i> {{title}}</h1>
+                <nav>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a routerLink="/"><i class="fa fa-home"></i> Inicio</a></li>
+                        <li class="breadcrumb-item"><a routerLink="/dashboard/configuraciones">Configuraciones</a></li>
+                        <li class="breadcrumb-item active">{{title}}</li>
+                    </ol>
+                </nav>
+            </div>
+            <!-- End Page Title -->
+        </div>
+        <div class="buton">
+            <button class="btn btn-outline-danger pull-right" href="javascript:void(0)" (click)="goBack()">Volver</button>
+        </div>
+        <div class="clear"></div>
+
+
+
+        <section class="section dashboard">
+
+
+            <!-- Recent Pagos -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-11 col-sm-11">
+                        <!-- buscador -->
+                        <!-- <app-search></app-search> -->
+                        <!-- buscador -->
+                    </div>
+                    <div class="col-xs-1 col-sm-1">
+                        <div class="text-right">
+                            <button class="btn btn-primary" [routerLink]="['/dashboard/paymentmethod/create/']">
+                  <i class="fa fa-pencil"></i>
+                  Crear
+                </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card recent-sales overflow-auto desktop">
+
+
+                    <div class="card-body">
+
+
+                        <table [ngClass]="loading? 'table table-borderless datatable':'table table-borderless'">
+                            <thead>
+                                <tr>
+
+                                    <!-- <th>Img</th> -->
+                                    <th>Type</th>
+                                    <th>bankName</th>
+                                    <th>Creado</th>
+                                    <th>Status</th>
+                                    <th>Estado</th>
+                                    <th class="text-nowrap">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let tiposdepago of tiposdepagos |  paginate: { itemsPerPage: count, currentPage: p }">
+
+                                    <td>{{tiposdepago.type}} </td>
+                                    <td>{{tiposdepago.bankName}} </td>
+                                    <td>
+                                        <span class="badge bg-success" *ngIf="tiposdepago.status === 'ACTIVE'">Publicado</span>
+                                        <span class="badge bg-primary" *ngIf="tiposdepago.status === 'INACTIVE'">Inactivo</span>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" [(ngModel)]="tiposdepago.status" (change)="cambiarStatus(tiposdepago)">
+                                      <option value="ACTIVE">Publicado</option>
+                                      <option value="INACTIVE">Inactivo</option>
+                                    </select>
+                                    </td>
+                                    <td>{{tiposdepago.created_at | date:'MMM d, y, h:mm:ss a'}} </td>
+                                    <td class="text-nowrap text-center">
+
+                                        <a [routerLink]="['/dashboard/paymentmethod/edit', tiposdepago.id]" class="cursor" data-toggle="tooltip" data-original-title="Edit">
+                                            <i class="fa fa-edit text-success" style="font-size: 18px;"></i>
+
+                                        </a>
+                                        <a (click)="eliminarPlan(tiposdepago.id)" class="cursor" data-toggle="tooltip" data-original-title="Borrar">
+
+                                            <i class="fa fa-trash text-danger" style="font-size: 18px; margin-left: 10px; margin-right: 10px;"></i>
+                                        </a>
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+
+                        </table>
+                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+                    </div>
+
+                </div>
+                <div class=" movil ">
+                    <div class="card text-left usuariosmovil shadow-sm" *ngFor="let tiposdepago of tiposdepagos |  paginate: { itemsPerPage: count, currentPage: p }">
+                        <div class="card-body inff">
+                            <div class="tooop">
+                                <div class="idd">
+                                    <p class="card-text">Tipo de Pago:</p>
+                                <h4>{{tiposdepago.type}}</h4>
+                                </div>
+                              <div class="rol">
+                                  <p class="card-text">Status:<br>
+                                    <span class="badge bg-success" *ngIf="tiposdepago.status === 'ACTIVE'">Publicado</span>
+                                        <span class="badge bg-primary" *ngIf="tiposdepago.status === 'INACTIVE'">Inactivo</span>
+                              </div>
+                              <div class="buton">
+                                <a [routerLink]="['/dashboard/paymentmethod/edit', tiposdepago.id]" class="cursor" data-toggle="tooltip" data-original-title="Edit">
+                                    <i class="fa fa-edit text-success" style="font-size: 18px;"></i>
+
+                                </a>
+                                <a (click)="eliminarPlan(tiposdepago.id)" class="cursor" data-toggle="tooltip" data-original-title="Borrar">
+
+                                    <i class="fa fa-trash text-danger" style="font-size: 18px; margin-left: 10px; margin-right: 10px;"></i>
+                                </a>
+                                 </div>
+                          </div>
+                          <div class="mail">
+                            <p class="card-text">Nombre Banco:<br>
+                                {{tiposdepago.bankName}}</p>
+                        </div>
+                          
+                          <select class="form-control" [(ngModel)]="tiposdepago.status" (change)="cambiarStatus(tiposdepago)">
+                            <option value="ACTIVE">Publicado</option>
+                            <option value="INACTIVE">Inactivo</option>
+                          </select>
+                          
+                          
+                             
+                        </div>
+                      </div>
+                      <div class="clear"></div>
+                      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                </div>
+            </div>
+            <!-- End Recent Pagos -->
+
+        </section>
+
+    </div>
+</div>
+<!--/main-->

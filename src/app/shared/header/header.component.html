@@ -7,7 +7,7 @@
         <!-- Logo -->
         <!-- ============================================================== -->
         <div class="navbar-header">
-            <a class="navbar-brand " href="/dashboard">
+            <a class="navbar-brand " routerLink="/">
                 <!-- Logo icon --><b>
                             <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                             <!-- Dark Logo icon -->
@@ -58,13 +58,16 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle waves-effect waves-dark" href="javascript:void(0)" (click)="openTopMenu()" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
-                        <div *ngIf="!userprofile">
-                            <img src="./assets/images/no-image.jpg" style="height: 50px; width: 50px;" class="img-circle avatar">
+                        <div *ngIf="userdirectory">
+                            <div *ngIf="!userdirectory">
+                                <img src="./assets/images/no-image.jpg" style="height: 50px; width: 50px;" class="img-circle avatar">
+                            </div>
+                            <div *ngIf="userdirectory.image">
+                                <img [src]="userdirectory.image | imagenPipe: 'directories'" style="height: 50px; width: 50px;" class="img-circle avatar">
+    
+                            </div>
                         </div>
-                        <div *ngIf="userprofile.directories[0].image">
-                            <img [src]="userprofile.directories[0].image | imagenPipe: 'directories'" style="height: 50px; width: 50px;" class="img-circle avatar">
-
-                        </div>
+                        
                     </a>
                     <div class="dropdown-menu dropdown-menu-right animated fadeInDown">
                         <ul class="dropdown-user">

@@ -19,6 +19,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
 
 // angular file uploader
 import { AngularFileUploaderModule } from 'angular-file-uploader';
+import { PaymentmethodIndexComponent } from './paymentmethod/paymentmethod-index/paymentmethod-index.component';
+import { PaymentmethodEditComponent } from './paymentmethod/paymentmethod-edit/paymentmethod-edit.component';
+import { PaymentmethodCrearComponent } from './paymentmethod/paymentmethod-crear/paymentmethod-crear.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,10 @@ import { AngularFileUploaderModule } from 'angular-file-uploader';
     CurrenciesEditComponent,
     PlanesEditComponent,
     PlanesIndexComponent,
-    RolesViewComponent
+    RolesViewComponent,
+    PaymentmethodIndexComponent,
+    PaymentmethodEditComponent,
+    PaymentmethodCrearComponent
 
   ],
   exports: [
@@ -36,7 +42,10 @@ import { AngularFileUploaderModule } from 'angular-file-uploader';
     CurrenciesEditComponent,
     PlanesEditComponent,
     PlanesIndexComponent,
-    RolesViewComponent
+    RolesViewComponent,
+    PaymentmethodIndexComponent,
+    PaymentmethodEditComponent,
+    PaymentmethodCrearComponent
   ],
   imports: [
     CommonModule,

@@ -24,16 +24,19 @@
 
         <section class="section profile">
             <div class="row">
-                <div class="col-xs-12 cols-sm-12 col-md-4 col-xl-4">
+                <div class="col-xs-12 cols-sm-12 col-md-3 col-xl-3">
 
                     <div class="card">
                         <div class="card-body profile-card pt-4  fichasmall">
-                            <div *ngIf="!userprofile">
-                                <img src="./assets/images/no-image.jpg" class="rounded-circle">
+                            <div *ngIf="userdirectory">
+                                <div *ngIf="!userdirectory.image">
+                                    <img src="./assets/images/no-image.jpg" class="rounded-circle">
+                                </div>
+                                <div *ngIf="userdirectory.image">
+                                    <img [src]="userdirectory.image | imagenPipe: 'directories'" [alt]="user.username" class="rounded-circle">
+                                </div>
                             </div>
-                            <div *ngIf="userprofile.directories[0].image">
-                                <img [src]="userprofile.directories[0].image | imagenPipe: 'directories'" [alt]="user.username" class="rounded-circle">
-                            </div>
+                            
                             <div class="inffichasmall">
                                 <h2>{{userprofile.username}}</h2>
                                 <p>{{userprofile.email}}</p>
@@ -47,55 +50,66 @@
 
                         </div>
                     </div>
+                    <div class="card">
+                        <div class="card-body profile-card pt-4  fichasmall">
+                            <!-- Change Password Form -->
+                            <form [formGroup]="passwordForm" (ngSubmit)="cambiarPassword()">
+                                <div class="row mb-3">
+                                    <h3>Cambiar contraseña</h3>
+                                    <p>La contraseña será cambiada al usuario <span> <b>{{userdirectory.username}}</b></span>
+                                    </p>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="currentPassword" class="col-12 col-form-label">Email <span class="required">*</span></label>
+                                    <div class="col-12">
+                                        <input name="email" type="email" class="form-control" formControlName="email" id="email" required>
+                                    </div>
+                                </div>
+                                <div class="text-center">
+                                    <input type="hidden" formControlName="id">
+                                    <button class="btn btn-outline-success waves-effect waves-light m-r-10" type="submit">Cambiar Contraseña</button>
+                                </div>
+                            </form>
+                            <!-- End Change Password Form -->
+
+                        </div>
+                    </div>
 
                 </div>
 
-                <div class="col-xs-12 col-sm-12 col-md-8 col-xl-8">
+                <div class="col-xs-12 col-sm-12 col-md-9 col-xl-9">
 
                     <div class="card">
                         <div class="card-body pt-3">
                             <!-- Bordered Tabs -->
-                            <div *ngIf="userprofile.role === 'GUEST'">
+                            <div *ngIf="user.role === 'GUEST'">
                                 <ul class="nav nav-tabs nav-tabs-bordered">
-
                                     <li class="nav-item">
                                         <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Detalles</button>
                                     </li>
-                                    <!-- <li class="nav-item">
-                                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">Cambiar
-                    Contraseña</button>
-                                    </li> -->
-
                                 </ul>
-
                             </div>
 
-                            <div *ngIf="userprofile.role === 'SUPERADMIN' || userprofile.role === 'ADMIN'  || userprofile.role === 'MEMBER' ">
+                            <div *ngIf="user.role === 'SUPERADMIN' || user.role === 'ADMIN'  || user.role === 'MEMBER' ">
                                 <ul class="nav nav-tabs nav-tabs-bordered">
 
                                     <li class="nav-item">
-                                        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Detalles</button>
+                                        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#directory">Mi Directorio</button>
                                     </li>
+                                    <!-- <li class="nav-item">
+                                        <button class="nav-link " data-bs-toggle="tab" data-bs-target="#profile-overview">Detalles</button>
+                                    </li> -->
 
 
-                                    <li class="nav-item">
-                                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-settings">Mi Directorio</button>
-                                    </li>
                                     <!-- <li class="nav-item">
                                     <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-settings">Configuraciones</button>
                                 </li> -->
-
-                                    <li class="nav-item">
-                                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">Cambiar
-                  Contraseña</button>
-                                    </li>
-
                                 </ul>
 
                             </div>
                             <div class="tab-content pt-2">
 
-                                <div class="tab-pane fade show active profile-overview" id="profile-overview">
+                                <div class="tab-pane fade   profile-overview" id="profile-overview">
 
                                     <br />
 
@@ -128,7 +142,7 @@
 
 
                                 <!-- mi directorio                             -->
-                                <div class="tab-pane fade pt-3" id="profile-settings">
+                                <div class="tab-pane fade pt-3 show active" id="directory">
 
                                     <div class="container">
                                         <div class="row">
@@ -136,7 +150,7 @@
                                                 <h5>{{pageTitle}}</h5>
                                             </div>
                                             <div *ngIf="display" class="col-xs-6 col-sm-4">
-                                                <a [routerLink]="['/dashboard/directorio/view-public/', userprofile.id]">
+                                                <a [routerLink]="['/dashboard/directorio/view-public/', userdirectory.id]">
                                                     <button class="btn btn-outline-success">Ver mi Tarjeta</button>
                                                 </a>
                                             </div>
@@ -148,16 +162,7 @@
                                     <form class="form-horizontal form-material" (ngSubmit)="guardarDirectorio()" [formGroup]="directorioForm">
                                         <div class="row">
 
-                                            <div class="col-xs-12 col-sm-6 col-md-8">
-                                                <!-- <div *ngIf="errors?.email" class="alert alert-danger mt-3">
-                                                    {{ errors?.email }}
-                                                </div>
-                                                <div *ngIf="errors?.password" class="alert alert-danger mt-3">
-                                                    {{ errors?.password }}
-                                                </div>
-                                                <div *ngIf="errors?.error" class="alert alert-danger mt-3">
-                                                    {{ errors?.error }}
-                                                </div> -->
+                                            <div class="col-xs-12 col-sm-5 col-md-6">
                                                 <div class="col-xs-12 col-md-6">
                                                     <label>Nombres <span class="required">*</span></label>
                                                     <input type="text" formControlName="nombre" value="nombre" class="form-control" required>
@@ -173,10 +178,11 @@
                                                     <label for="exampleInputEmail1">Especialidad <span class="required">*</span></label>
 
                                                     <select name="" id="input" class="form-control" formControlName="especialidad" required="required">
-                                              <option value="">Seleccione</option>
-                                              <option value="Cirugía Buco-maxilofacial">Cirugía Buco-maxilofacial</option>
-                                              <option value="Cirugía Maxilofacial">Cirugía Maxilofacial</option>
-                                            </select>
+                                                    <option value="">Seleccione</option>
+                                                    <option value="Cirugía Buco-maxilofacial">Cirugía Buco-maxilofacial</option>
+                                                    <option value="Cirugía Bucal">Cirugía Bucal</option>
+                                                    <option value="Cirugía Maxilofacial">Cirugía Maxilofacial</option>
+                                                    </select>
                                                 </div>
                                                 <div class="col-xs-12 col-md-6">
                                                     <label for="exampleInputEmail1">Universidad <span class="required">*</span></label>
@@ -233,17 +239,17 @@
                                                 <div class="col-xs-12">
                                                     <label>Dirección <span class="required">*</span></label>
                                                     <div class="col-md-12">
-                                                        <textarea formControlName="direccion" id="direccion" cols="30" rows="4" class="form-control"></textarea>
+                                                        <!-- <textarea formControlName="direccion" id="direccion" cols="30" rows="4" class="form-control"></textarea> -->
                                                         <!-- <ckeditor [editor]="Editor" id="direccion" (ready)="onReady($event)" data="<p>Hello, world!</p>" formControlName="direccion" value="direccion" rows="5" class="form-control" required></ckeditor> -->
-
+                                                        <ckeditor formControlName="direccion" data="<p>Hello, world!</p>"></ckeditor>
                                                     </div>
                                                 </div>
                                                 <div class="col-xs-12">
 
                                                     <label>Dirección Adicional (Opcional)</label>
-                                                    <textarea formControlName="direccion1" id="direccion1" cols="30" rows="4" class="form-control"></textarea>
+                                                    <!-- <textarea formControlName="direccion1" id="direccion1" cols="30" rows="4" class="form-control"></textarea> -->
                                                     <!-- <ckeditor [editor]="Editor1" id="direccion1" (ready)="onReady($event)" data="<p>Hello, world!</p>" formControlName="direccion1" value="direccion1" rows="5" class="form-control"></ckeditor> -->
-
+                                                    <ckeditor formControlName="direccion1" data="<p>Hello, world!</p>"></ckeditor>
                                                 </div>
                                                 <div class="clear"></div>
                                                 <br>
@@ -253,19 +259,25 @@
                                                 <br>
                                                 <!----//-->
                                             </div>
-                                            <div class="col-xs-12 col-sm-6 col-md-4">
+                                            <div class="col-xs-12 col-sm-7 col-md-6">
                                                 <div class="col-xs-12">
                                                     <div class="form-group form-row">
-                                                        <p>Subir Imagen (peso max: 500kb | medidas max: 226x226px | formato jpg)</p>
-                                                        <div class="col-xs-12">
-                                                            <div *ngIf="infoDirectorio!=''">
-                                                                <button *ngIf="infoDirectorio.image" type="button" class="btn btn-outline-danger" (click)="deleteFotoPerfil()">Eliminar</button>
-                                                                <img [src]="infoDirectorio.image | imagenPipe: 'directories'" style="height: 50px; width: 50px;" class="img-circle avatar">
-                                                            </div>
-                                                            <angular-file-uploader [config]="afuConfig " (ApiResponse)="avatarUpload($event) ">
-                                                            </angular-file-uploader>
-
+                                                        <div *ngIf="!infoDirectorio">
+                                                            <p>Completa tu perfil para activar la subida de foto perfil</p>
                                                         </div>
+                                                        <div *ngIf="infoDirectorio">
+                                                            <p>Subir Imagen (peso max: 500kb | medidas max: 226x226px | formato jpg)</p>
+                                                            <div class="col-xs-12">
+                                                                <div *ngIf="infoDirectorio!=''">
+                                                                    <button *ngIf="infoDirectorio.image" type="button" class="btn btn-outline-danger" (click)="deleteFotoPerfil()">Eliminar</button>
+                                                                    <img [src]="infoDirectorio.image | imagenPipe: 'directories'" style="height: 50px; width: 50px;" class="img-circle avatar">
+                                                                </div>
+                                                                <angular-file-uploader ngClass="imagedrop" [config]="afuConfig " (ApiResponse)="avatarUpload($event) ">
+                                                                </angular-file-uploader>
+    
+                                                            </div>
+                                                        </div>
+                                                       
 
 
                                                     </div>
@@ -279,28 +291,29 @@
                                                     </div>
                                                     <div class="clear"></div>
                                                     <div class="redes">
-                                                        <div class="row mb-3">
+                                                        
+                                                        <div class=" col-xs-12 col-md-6">
                                                             <label for="facebook" class="col-xs-12 col-form-label">
-                                                <i class="bi bi-facebook"></i> Facebook</label>
+                                                                <i class="bi bi-facebook"></i> Facebook</label>
                                                             <div class="col-11">
                                                                 <input type="text" class="form-control" formControlName="facebook" value="facebook" placeholder="https://facebook.com/nameuser">
                                                             </div>
                                                         </div>
-                                                        <div class="row mb-3">
+                                                        <div class=" col-xs-12 col-md-6">
                                                             <label for="instagram" class="col-xs-12 col-form-label">
                                               <i class="bi bi-instagram"></i> Instagram</label>
                                                             <div class="col-11">
                                                                 <input type="text" class="form-control" formControlName="instagram" value="instagram" placeholder="https://instagram.com/nameuser">
                                                             </div>
                                                         </div>
-                                                        <div class="row mb-3">
+                                                        <div class=" col-xs-12 col-md-6">
                                                             <label for="twitter" class="col-xs-12 col-form-label">
                                             <i class="bi bi-twitter"></i> Twitter</label>
                                                             <div class="col-11">
                                                                 <input type="text" class="form-control" formControlName="twitter" value="twitter" placeholder="https://twitter.com/nameuser">
                                                             </div>
                                                         </div>
-                                                        <div class="row mb-3">
+                                                        <div class=" col-xs-12 col-md-6">
                                                             <label for="linkedin" class="col-xs-12 col-form-label">
                                           <i class="bi bi-linkedin"></i> Linkedin</label>
                                                             <div class="col-11">
@@ -335,44 +348,6 @@
 
                                 </div>
 
-                                <!-- Change Password Form -->
-                                <div class="tab-pane fade pt-3 profile-change-password profile-edit" id="profile-change-password">
-                                    <!-- Change Password Form -->
-                                    <form [formGroup]="passwordForm" (ngSubmit)="cambiarPassword()">
-                                        <div class="row mb-3">
-                                            <h3>Cambiar contraseña</h3>
-                                            <p>La contraseña será cambiada al usuario <span> <b>{{userprofile.username}}</b></span>
-                                            </p>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Email <span class="required">*</span></label>
-                                            <div class="col-md-8 col-lg-9">
-                                                <input name="email" type="email" class="form-control" formControlName="email" id="email" required>
-                                            </div>
-                                        </div>
-
-                                        <!-- <div class="row mb-3">
-                                            <label for="password" class="col-md-4 col-lg-3 col-form-label">Nueva Contraseña</label>
-                                            <div class="col-md-8 col-lg-9">
-                                                <input name="password" type="password" class="form-control" id="password" formControlName="password" required>
-                                            </div>
-                                        </div>
-
-                                        <div class="row mb-3">
-                                            <label for="password2" class="col-md-4 col-lg-3 col-form-label">Reingresar Contraseña</label>
-                                            <div class="col-md-8 col-lg-9">
-                                                <input name="password2" type="password" class="form-control" id="password2" formControlName="password2" required>
-                                            </div>
-                                        </div> -->
-                                        <!-- <p *ngIf="passwordNoValido()">* El password deben ser iguales </p> -->
-                                        <div class="text-center">
-                                            <input type="hidden" formControlName="id">
-                                            <button class="btn btn-outline-success waves-effect waves-light m-r-10" type="submit">Cambiar Contraseña</button>
-                                        </div>
-                                    </form>
-                                    <!-- End Change Password Form -->
-
-                                </div>
                             </div>
                             <!-- End Bordered Tabs -->
 

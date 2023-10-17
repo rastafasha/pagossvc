@@ -54,12 +54,8 @@
                 </div>
 
 
-                <div class="card recent-sales overflow-auto">
-
-
+                <div class="card recent-sales overflow-auto desktop">
                     <div class="card-body">
-
-
                         <table [ngClass]="loading? 'table table-borderless datatable':'table table-borderless'">
                             <thead>
                                 <tr>
@@ -69,7 +65,6 @@
                                     <th>Email</th>
                                     <th>Status</th>
                                     <th>Estado</th>
-                                    <th>Accion</th>
                                     <th class="text-nowrap">Acciones</th>
                                 </tr>
                             </thead>
@@ -106,20 +101,11 @@
                                         <span class="badge bg-danger" *ngIf="directory.status === 'REJECTED'">Rechazado</span>
                                     </td>
                                     <td>
-                                        <select class="form-control" [(ngModel)]="directory.status">
+                                        <select class="form-control" [(ngModel)]="directory.status" (change)="cambiarStatus(directory)">
                                         <option value="PUBLISHED">Publicado</option>
                                         <option value="PENDING">Pendiente</option>
                                         <option value="REJECTED">Rechazado</option>
                                       </select>
-                                    </td>
-                                    <td class="text-nowrap text-center">
-
-                                        <a (click)="cambiarStatus(directory)" class="cursor" data-toggle="tooltip" data-original-title="Edit">
-                                            <button class="btn btn-outline-success">
-                                        <i class="bx bxs-check-circle text-success" style="font-size: 18px;"></i> Aceptar
-                                      </button>
-                                        </a>
-
                                     </td>
 
                                     <!-- <td><span [ngClass]="user.is_active == 1 ? 'badge bg-success' : 'badge bg-warning'" class="badge bg-success">{{user.is_active == 1? 'Activo':'Offline'}}</span></td> -->
@@ -141,16 +127,58 @@
                         </table>
                         <pagination-controls (pageChange)="p = $event"></pagination-controls>
 
-                        <!-- <table class="table table-borderless" *ngIf="loading">
-                        <tfoot>
-                            <tr>
-                                <td colspan="6">&nbsp; Encontrados {{ usersCount }} usuarios</td>
-                            </tr>
-                        </tfoot>
-                    </table> -->
 
                     </div>
 
+                </div>
+
+                <!-- movil -->
+                <div class=" movil ">
+                    <div class="card text-left usuariosmovil   shadow-sm" *ngFor="let directory of directories |  paginate: { itemsPerPage: count, currentPage: p }">
+                        <div class="card-body inff direct">
+                            <div class="tooop">
+                                <div *ngIf="!directory.image ">
+                                    <img [src]="directory.image | imagenPipe: 'directories'" style="height: 50px; width: 50px;" class="img-circle avatar">
+                                </div>
+                                <div *ngIf="directory.image">
+                                    <img [src]="directory.image | imagenPipe: 'directories'" style="height: 50px; width: 50px;" class="img-circle avatar">
+
+                                </div>
+                              <div class="rol">
+                                  <p class="card-text">Status:<br>
+                                    <span class="badge bg-success" *ngIf="directory.status === 'PUBLISHED'">Publicado</span>
+                                    <span class="badge bg-primary" *ngIf="directory.status === 'PENDING'">Pendiente</span>
+                                    <span class="badge bg-danger" *ngIf="directory.status === 'REJECTED'">Rechazado</span>
+                              </div>
+                              <div class="buton">
+                                <a [routerLink]="['/dashboard/directorio/edit', directory.id]" class="cursor" data-toggle="tooltip" data-original-title="Edit">
+                                    <div class="btn btn-success"><i class="fa fa-edit"></i></div>
+                                </a>
+                                <a (click)="eliminarDirectory(directory.id)" class="cursor" data-toggle="tooltip" data-original-title="Borrar">
+                                    <div class="btn btn-danger"><i class="fa fa-trash"></i></div>
+                                </a>
+                                 </div>
+                          </div>
+                          <div class="us">
+                              <p class="card-text">Usuario:</p>
+                          <h4>{{directory.nombre}} {{directory.surname}}</h4>
+                          </div>
+                          <div class="mail">
+                              <p class="card-text">Email:</p>
+                          <h4>{{directory.email}}</h4>
+                          </div>
+                          <select class="form-control" [(ngModel)]="directory.status" (change)="cambiarStatus(directory)">
+                            <option value="PUBLISHED">Publicado</option>
+                            <option value="PENDING">Pendiente</option>
+                            <option value="REJECTED">Rechazado</option>
+                          </select>
+                          
+                          
+                             
+                        </div>
+                      </div>
+                      <div class="clear"></div>
+                      <pagination-controls (pageChange)="p = $event"></pagination-controls>
                 </div>
             </div>
             <!-- End Recent Pagos -->

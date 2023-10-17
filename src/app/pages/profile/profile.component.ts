@@ -12,6 +12,7 @@ import { AccountService } from 'src/app/services/account.service';
 import { MemberService } from 'src/app/services/member.service';
 import { UserService } from 'src/app/services/user.service';
 import { environment } from 'src/environments/environment';
+import { DirectorioService } from 'src/app/services/directorio.service';
 
 
 @Component({
@@ -28,14 +29,15 @@ export class ProfileComponent implements OnInit {
 
   identity: any;
 
-  user: User;
-  userprofile: User;
-  profileSeleccionado: User;
+  user: User = null;
+  userprofile: User = null;
+  profileSeleccionado: User = null;
 
   directorioForm: FormGroup;
   passwordForm: FormGroup;
 
-  directorio: Directorio;
+  directorio: Directorio = null;
+  userdirectory: Directorio = null;
   infoDirectorio: any;
   id: number | null;
   idDirecotory: number | null;
@@ -95,6 +97,7 @@ export class ProfileComponent implements OnInit {
     private accountService: AccountService,
     private memberService: MemberService,
     private activatedRoute: ActivatedRoute,
+    private directorioService: DirectorioService,
     private fb: FormBuilder,
 
   ) {
@@ -127,8 +130,8 @@ export class ProfileComponent implements OnInit {
     this.userService.getUserById(id).subscribe(
       res =>{
         this.userprofile = res[0];
+        this.userdirectory = res[0].directories[0];
         error => this.error = error
-        // console.log(this.userprofile);
       }
     );
 
@@ -264,7 +267,7 @@ export class ProfileComponent implements OnInit {
   get image() { return this.directorioForm.get('image'); }
 
 
-  guardarDirectorio() {
+  guardarDirectorio() {debugger
     this.formularioVcardGe();
 
     const formData = new FormData();
@@ -289,7 +292,11 @@ export class ProfileComponent implements OnInit {
     formData.append('instagram', this.directorioForm.get('instagram')?.value);
     formData.append('twitter', this.directorioForm.get('twitter')?.value);
     formData.append('linkedin', this.directorioForm.get('linkedin')?.value);
-    formData.append('image', this.directorioForm.get('image').value);
+    
+    if(this.directorioForm.value.image){
+      formData.append('image', this.directorioForm.get('image').value);
+    }
+      
     formData.append('vcard', this.vCardInfo);
 
 

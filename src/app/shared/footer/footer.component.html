@@ -1,3 +1,50 @@
+<!---menu movil footer-->
+<div class="navbarM " *ngIf="user.role === 'SUPERADMIN' || user.role === 'ADMIN' ">
+    <a routerLink="/dashboard/users" routerLinkActive="active">
+        <i class="fa fa-users"></i>
+        <p>Usuarios</p>
+    </a>
+    <a routerLink="/dashboard/directorio" routerLinkActive="active" >
+        <i class="fa fa-bookmark"></i>
+        <p>Directorio</p>
+    </a>
+    <a routerLink="/dashboard/payments" routerLinkActive="active" >
+        <i class="fa fa-cc"> </i>
+        <p>Pagos</p>
+    </a>
+    <a [routerLink]="['/dashboard/profile/', user.id]"  routerLinkActive="active">
+        <i class="fa fa-user-md"> </i>
+        <p>Perfil</p>
+    </a>
+    <a routerLink="/dashboard/configuraciones" routerLinkActive="active" >
+        <i class="fa fa-cogs"> </i>
+        <p>Config</p>
+    </a>
+</div>
+<div class="navbarM " *ngIf="user.role === 'MEMBER' || user.role === 'GUEST' ">
+    
+    <a routerLink="/dashboard/directorios" routerLinkActive="active" >
+        <i class="fa fa-bookmark"></i>
+        <p>Directorio</p>
+    </a>
+    <a routerLink="/dashboard/planes/all" routerLinkActive="active" >
+        <i class="fa fa-info-circle"></i>
+        <p>Planes</p>
+    </a>
+    <a routerLink="/dashboard/realizar-pago" routerLinkActive="active" >
+        <i class="fa fa-cc"></i>
+        <p>pagar</p>
+    </a>
+    <a routerLink="/dashboard/historial-pagos" routerLinkActive="active" >
+        <i class="fa fa-google-wallet"> </i>
+        <p>Pagos</p>
+    </a>
+    <a [routerLink]="['/dashboard/profile/', user.id]"  routerLinkActive="active">
+        <i class="fa fa-user-md"> </i>
+        <p>Perfil</p>
+    </a>
+</div>
+
 <!-- ============================================================== -->
 <!-- footer -->
 <!-- ============================================================== -->

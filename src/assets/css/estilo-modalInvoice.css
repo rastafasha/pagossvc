@@ -1,0 +1,122 @@
+.invoicemodal{
+    margin: auto;
+    width: 100%;
+    height: auto;
+    border: 1px solid #ccc;
+}
+
+.invoicemodal .invoice-top {
+    width: 100%;
+}
+
+
+.invoicemodal .invoice-top h1 {
+    color: #2c304d;
+    font-size: 3rem;
+    text-transform: uppercase;
+    margin-right: 10px;
+    margin-bottom: 0;
+}
+
+.invoicemodal .invoice-top span {
+    display: block;
+    font-weight: 600;
+    font-style: italic;
+}
+
+.invoicemodal .invoice-header {
+    width: 100%;
+    padding: 0rem 2rem;
+    font-size: 1.1rem;
+}
+
+.invoicemodal .invoice-header .invoice-logo {
+    display: block;
+}
+
+.invoicemodal .invoice-header .details .company-name {
+    color: #2c304d;
+    font-weight: 600;
+    font-size: 1.6rem;
+}
+
+.invoicemodal .invoice-header .details ul li,
+.invoicemodal .invoice-header .client-details ul li{
+    list-style: none;
+}
+
+.invoicemodal .invoice-header .client-details .title {
+    color: #2c304d;
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
+.invoicemodal .invoice-date {
+    padding: 0 2rem;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: flex-end;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+
+
+
+.invoicemodal .invoice-footer {
+    color: #aea9c3;
+    background: #2c304d;
+    padding: 2rem 2rem;
+    margin-top: 2rem;
+}
+
+.invoicemodal .total {
+    text-align: center;
+    line-height: 2.2rem;
+}
+
+.invoicemodal .total .title {
+    color: #aea9c3;
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+.invoicemodal .total .number {
+    color: #e76c90;
+    font-size: 2.4rem;
+    font-weight: 700;
+}
+.invoicemodal .total .taxe {
+    color: #aea9c3;
+}
+.invoicemodal .footer-bottom {
+    margin-top: 4rem;
+    text-align: center;
+}
+.invoicemodal .thx i {
+    color: #e76c90;
+    font-size: 3rem;
+    margin-bottom: -15px;
+}
+
+.invoicemodal .table thead th {
+    vertical-align: middle;
+    border: 0 none;
+    padding: 1rem 0.85rem;
+    color: #e76c90;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.invoicemodal .table td {
+    border-bottom: 0 none;
+    padding: 1.2rem;
+    vertical-align: middle;
+    color: #5d5386;
+    font-weight: 600;
+}
+
+.invoicemodal .table td .description {
+    color: #98a8b4;
+    font-size: .9rem;
+    font-weight: 500;
+}

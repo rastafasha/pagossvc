@@ -51,7 +51,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link collapsed cursor" routerLink="/dashboard/historial-pagos" routerLinkActive="active">
-                            <i class="fa fa-calculator"> </i>
+                            <i class="fa fa-google-wallet"> </i>
                             <span>Mis Pagos</span>
                         </a>
                     </li>
@@ -82,8 +82,14 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link collapsed cursor" [routerLink]="['/dashboard/realizar-pago/']" routerLinkActive="active">
+                            <i class="fa fa-cc"></i>
+                            <span>Pagar</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link collapsed cursor" routerLink="/dashboard/historial-pagos" routerLinkActive="active">
-                            <i class="fa fa-calculator"> </i>
+                            <i class="fa fa-google-wallet"> </i>
                             <span>Mis Pagos</span>
                         </a>
                     </li>
@@ -92,15 +98,21 @@
 
 
                 <div *ngIf="user.role === 'GUEST' ">
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link collapsed cursor" [routerLink]="['/dashboard/profile/', user.id]" routerLinkActive="active">
                             <i class="fa fa-user-md"></i>
                             <span>Mi Cuenta</span>
                         </a>
+                    </li> -->
+                    <li class="nav-item">
+                        <a class="nav-link collapsed cursor" [routerLink]="['/dashboard/realizar-pago']" routerLinkActive="active">
+                            <i class="fa fa-cc"></i>
+                            <span>Pagar</span>
+                        </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link collapsed cursor" routerLink="/dashboard/historial-pagos" routerLinkActive="active">
-                            <i class="fa fa-calculator"> </i>
+                            <i class="fa fa-google-wallet"> </i>
                             <span>Mis Pagos</span>
                         </a>
                     </li>
@@ -138,7 +150,15 @@
         <!-- End Sidebar navigation -->
     </div>
     <!-- End Sidebar scroll-->
+    <!-- ============================================================== -->
+<!-- footer -->
+<!-- ============================================================== -->
+<footer class="credit-footer"> <small>© {{year}} | SVCBMF. <br> Desarrollado por:<br> <a href="http://malcolmcordova.com" target="_blank">Malcolm Córdova Studio Design</a></small> </footer>
+<!-- ============================================================== -->
+<!-- End footer -->
+<!-- ============================================================== -->
 </aside>
 <!-- ============================================================== -->
 <!-- End Left Sidebar - style you can find in sidebar.scss  -->
 <!-- ============================================================== -->
+

@@ -1,7 +1,7 @@
 <!-- =======| Main |======= -->
 <div class="container animated fadeInUp" id="main" class="main" role="main" name="profile">
 
-    <div class="row">
+    <div class="col-xs-12">
         <div class="leftside">
             <!-- Page Title -->
             <div class="pagetitle">
@@ -19,7 +19,7 @@
             <button class="btn btn-outline-danger pull-right pull-right" href="javascript:void(0)" (click)="goBack()">Volver</button>
         </div>
     </div>
-
+    <div class="clear"></div>
     <div class="card">
         <div class="card-body pt-3">
             <!--external Bordered Tabs -->
@@ -74,40 +74,18 @@
 
                     </div>
                     <div class="clear"></div>
-                    <div class="datosTranf">
-                        <div class="datos">
-                            <h3>Paypal</h3>
+                    <div class="datosTranf" >
+                        <div class="datos"*ngFor="let pago of paymentMethods">
+                            <h3>{{pago.type}}</h3>
                             <div class="clear"></div>
-                            <p><b>Metodo:</b> Paypal</p>
-                            <p><b>Correo:</b> correopaypal@gmail.com</p>
-                            <p><b>Banco:</b> Paypal</p>
-                            <p><b>Requerido:</b> reference y photo</p>
-                        </div>
-                        <div class="datos">
-                            <h3>Zelle</h3>
-                            <div class="clear"></div>
-                            <p> <b>Metodo:</b> Zelle</p>
-                            <p><b>Correo:</b> correozelle@gmail.com</p>
-                            <p><b>Banco:</b> nombre del banco</p>
-                            <p><b>Requerido:</b> reference y photo</p>
-                        </div>
-                        <div class="datos">
-                            <h3>Transferencia Bancaria</h3>
-                            <div class="clear"></div>
-                            <p> <b>Metodo:</b> Transferencia</p>
-                            <p><b>Banco:</b> nombre del banco</p>
-                            <p><b>Cuenta:</b> 0000-020320320320329</p>
-                            <p><b>CI o Rif:</b> J-123456789</p>
-                            <p><b>Requerido:</b> reference y photo</p>
-                        </div>
-                        <div class="datos">
-                            <h3>Pago Movil</h3>
-                            <div class="clear"></div>
-                            <p> <b>Metodo:</b> Pago Movil</p>
-                            <p><b>Banco:</b> banco</p>
-                            <p><b>Telf:</b> 0424-123345567</p>
-                            <p><b>CI o Rif:</b> J-123456789</p>
-                            <p><b>Requerido:</b> reference y photo</p>
+                            <p><b>Metodo:</b> {{pago.type}}</p>
+                            <p *ngIf="pago.email"><b>Correo:</b> {{pago.email}}</p>
+                            <p *ngIf="pago.bankName"><b>Banco:</b> {{pago.bankName}}</p>
+                            <p *ngIf="pago.bankAccount"><b>No.Cuenta:</b> {{pago.bankAccount}}</p>
+                            <p *ngIf="pago.bankAccountType"><b>Tipo Cuenta:</b> {{pago.bankAccountType}}</p>
+                            <p *ngIf="pago.ciorif"><b>No.Cuenta o Rif:</b> {{pago.ciorif}}</p>
+                            <p *ngIf="pago.telefono"><b>Telefono:</b> {{pago.telefono}}</p>
+                            <p><b>Requerido:</b> reference y/o photo</p>
                         </div>
                     </div>
                 </div>
@@ -246,11 +224,5 @@
 
         </div>
     </div>
-
-
-
-
-
-
 </div>
 <!-- End #main-->

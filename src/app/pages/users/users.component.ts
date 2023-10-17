@@ -6,6 +6,7 @@ import { Location } from '@angular/common';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
 import { environment } from 'src/environments/environment';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-users',
@@ -69,15 +70,31 @@ export class UsersComponent implements OnInit {
 
 
   eliminarUser(user:User){
-    this.userService.deleteById(user).subscribe(
-      response =>{
-        this.getUsers();
-      },
-      error=>{
-        this.msm_error = 'No se pudo eliminar el curso, vuelva a intentar.'
-      }
-      );
-      this.ngOnInit();
+    
+
+      Swal.fire({
+        title: 'Estas Seguro?',
+        text: "No podras recuperarlo!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, Borrar!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.userService.deleteById(user).subscribe(
+            response =>{
+              this.getUsers();
+            }
+            );
+          Swal.fire(
+            'Borrado!',
+            'El Archivo fue borrado.',
+            'success'
+          )
+          this.ngOnInit();
+        }
+      });
   }
 
   goBack() {

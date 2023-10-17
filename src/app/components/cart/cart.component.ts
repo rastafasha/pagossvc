@@ -107,11 +107,13 @@ export class CartComponent implements OnInit {
               data.purchase_units[0].items,
               data.purchase_units[0].amount.value,
               data.id,
+              // data.purchase_units[0],
               data.payer.email_address,
               data.payer.name.given_name,
               data.payer.name.surname,
               data.status,
-              data.purchase_units[0].items[0]
+              data.purchase_units[0].items[0],
+              data.create_time,
 
             );
             this.emptyCart();
@@ -211,7 +213,7 @@ export class CartComponent implements OnInit {
 
 
 
-  openModal(items, amount, reference, email, name, surname, status, planid): void{
+  openModal(items, amount, reference, email, name, surname, status, planid, created): void{
     const modalRef = this.modalService.open(ModalComponent);
     modalRef.componentInstance.items = items;
     modalRef.componentInstance.amount = amount;
@@ -221,6 +223,7 @@ export class CartComponent implements OnInit {
     modalRef.componentInstance.surname = surname;
     modalRef.componentInstance.status = status;
     modalRef.componentInstance.items[0] = planid;
+    modalRef.componentInstance.created = created;
 
   }
 

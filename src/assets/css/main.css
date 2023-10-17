@@ -11,6 +11,9 @@
 @import url("./dashboard.css");
 @import url("./cart.css");
 @import url('./spinners.css');
+@import url('./estilo-modalInvoice.css');
+@import url('./menu-movil.css');
+@import url('./movilui.css');
 .cursor {
     cursor: pointer;
 }
@@ -32,6 +35,7 @@
     --azulclaro: #4a77e2;
     --morado: #774477;
     --black: #202023;
+    --blackOscuro: #000000;
     --white: #fff;
     --red: red;
     --green: green;
@@ -40,7 +44,7 @@
 }
 
 .profile-card .rounded-circle {
-    height: 100px;
+    height: auto;
 }
 
 html body .b-r {
@@ -67,6 +71,9 @@ img.avatar {
 
 .colorsec {
     color: var(--azulclaro)
+}
+b{
+    font-family: 'HelveticaNeueLTStd-Bd';
 }
 
 .colordang {
@@ -185,6 +192,40 @@ img.avatar {
     background: linear-gradient(to bottom, #0f0c29, var(--azul), var(--azulclaro));
 }
 
+.desktop{
+    display: block;
+}
+
+.movil{
+    display: none;
+}
+
+.cardwhite-sm{
+    padding: 20px;
+    border-radius: 16px;
+    border: 1px solid #fcfcfc;
+    background-color: #f2f2f2;
+    margin: 4px;
+    width: 49%;
+}
+
+.cardwhite{
+    padding: 20px;
+    border-radius: 16px;
+    border: 1px solid #fcfcfc;
+    background-color: #ffff;
+    margin: 4px;
+}
+
+.mapa iframe{
+    height: 50vh;
+    width: 100%;
+}
+
+.font{
+    font-size: .8em;
+}
+
 @media (min-width: 1024px) {
     .fichasmall {
         display: flex;
@@ -221,6 +262,10 @@ img.avatar {
 }
 
 @media (max-width: 768px) {
+    .cardwhite-sm{
+        width: 100%;
+    }
+    
     .leftside .pagetitle {
         display: flex;
         flex-direction: row;
@@ -236,9 +281,33 @@ img.avatar {
         width: 20%;
         height: 40px;
     }
+    .desktop{
+        display: none;
+    }
+    
+    .movil{
+        display: block;
+    }
+    h1 {
+        line-height: 20px;
+        font-size: 28px;
+    }
+
+    h4 {
+        line-height: 22px;
+        font-size: 16px;
+    }
 }
 
 @media (max-width: 420px) {
+    .desktop{
+        display: none;
+    }
+    
+    .movil{
+        display: block;
+    }
+    
     .leftside .pagetitle {
         display: flex;
         flex-direction: column;
@@ -255,6 +324,18 @@ img.avatar {
         width: auto;
         height: 40px;
     }
+    
+    h1 {
+        line-height: 20px;
+        font-size: 24px;
+    }
+
+    h2 {
+        line-height: 20px;
+        font-size: 18px;
+    }
+
+    
 }
 
 @media (max-width: 390px) {

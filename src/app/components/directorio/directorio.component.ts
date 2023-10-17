@@ -12,11 +12,10 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class DirectorioComponent implements OnInit {
 
-  directorios: Directorio;
-  directories: Directorio;
+  directorios: Directorio = null;
 
   error: string;
-  doctores;
+  doctores: any = null;
 
   private http: HttpClient;
 
@@ -39,6 +38,10 @@ export class DirectorioComponent implements OnInit {
 
   public user: User;
 
+  directories: any = [];
+  directoriesActivos: any = [];
+  query:string ='';
+
   constructor(
     public directorioService: DirectorioService,
     private userService: UserService,
@@ -58,7 +61,7 @@ export class DirectorioComponent implements OnInit {
   getPublicados(){
     this.directorioService.getDirectoriosPublicados().subscribe(
       res =>{
-        this.directories = res;
+        this.directoriesActivos = res;
         error => this.error = error
         // console.log(this.directories);
       }
@@ -68,9 +71,8 @@ export class DirectorioComponent implements OnInit {
   getDirectorios(): void {
     this.directorioService.getDirectorios().subscribe(
       res =>{
-        this.directorios = res;
+        this.directories = res;
         error => this.error = error;
-        // console.log(this.directories);
       }
     );
   }
@@ -79,45 +81,6 @@ export class DirectorioComponent implements OnInit {
     this.classApplied = !this.classApplied;
   }
 
-
-  buscarDirectorio( termino: string) {
-
-    // this.directorioService.buscarDirectorio( termino )
-    //   .subscribe( directorios => this.directorios = directorios);
-
-
-  }
-
-  // search( text: string) {// funciona, devuelve la busqueda
-
-  //   if(this.doctores == undefined){
-  //     console.log('pendiente');
-  //   }
-
-
-  //   if( this.search.length == 0){
-  //     return;
-  //   }
-
-  //   return this.http.get(this.ServerUrl + 'directorio/search?text=' + text )
-  //     .toPromise()
-  //     .then(doctores=>{
-  //       this.doctores= {'results': JSON.stringify(doctores, null),
-
-  //       'json': ()=>{
-  //         return doctores;
-  //       }
-
-  //     };
-  //     // devolver el array
-  //     const mapped = Object.keys(doctores)
-  //     .map(key => ({type: key, value: doctores[key]}));
-
-  //     this.doctores = doctores;
-
-  //     });
-
-  // }
 
 
   /**
@@ -159,6 +122,26 @@ export class DirectorioComponent implements OnInit {
   }
 
 
+  search() {
+    return this.directorioService.search(this.query).subscribe(
+      res=>{
+        this.directories = res;
+        if(!this.query){
+          this.ngOnInit();
+        }
+        console.log(res);
+      });
+  }
 
+  searchActivos() {
+    return this.directorioService.search(this.query).subscribe(
+      res=>{
+        this.directoriesActivos = res;
+        if(!this.query){
+          this.ngOnInit();
+        }
+        console.log(res);
+      });
+  }
 
 }

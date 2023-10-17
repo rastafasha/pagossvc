@@ -20,6 +20,7 @@ import { ComponentsModule } from '../components/components.module';
 
 // paginacion
 import { NgxPaginationModule } from 'ngx-pagination';
+import {ScrollingModule} from '@angular/cdk/scrolling';
 
 //paypal
 import { NgxPayPalModule } from 'ngx-paypal';
@@ -46,6 +47,7 @@ import { AngularFileUploaderModule } from 'angular-file-uploader';
 import { DirectoryModule } from './directorio/directory.module';
 //Qr
 import { QRCodeModule } from 'angular2-qrcode';
+import { CKEditorModule } from 'ckeditor4-angular';
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -103,7 +105,9 @@ import { QRCodeModule } from 'angular2-qrcode';
     NgxPaginationModule,
     AngularFileUploaderModule,
     DirectoryModule,
-    QRCodeModule
+    QRCodeModule,
+    ScrollingModule,
+    CKEditorModule
 
   ],
   providers: [

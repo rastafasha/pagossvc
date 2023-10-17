@@ -20,10 +20,13 @@ export class UserProfileComponent implements OnInit {
   title = "Detalles de la cuenta";
   user: User;
   userprofile: User;
+  userdirectory: User;
   error: string;
   directories: Directorio;
   directory: Directorio;
-  payments: Payment;
+  username: Directorio = null;
+  payments: Payment = null;
+  userpayments: Payment = null;
   id:number;
 
   rolesSelected:number;
@@ -46,6 +49,7 @@ export class UserProfileComponent implements OnInit {
   ngOnInit(): void {
     window.scrollTo(0,0);
     this.closeMenu();
+    this.getUser();
     this.activatedRoute.params.subscribe( ({id}) => this.getUserRemoto(id));
   }
 
@@ -66,8 +70,9 @@ export class UserProfileComponent implements OnInit {
     this.userService.getUserById(+id).subscribe(
       res =>{
         this.userprofile = res[0];
-        error => this.error = error
-        // console.log(this.userprofile);
+        this.userdirectory = res[0].directories[0];
+        this.userpayments = res[0].payments;
+        error => this.error = error;
       }
     );
   }

@@ -1,0 +1,111 @@
+{"id": "2JT662025Y8122640",
+    "intent": "CAPTURE",
+    "status": "COMPLETED",
+    "purchase_units": [
+        {
+            "reference_id": "default",
+            "amount": {
+                "currency_code": "USD",
+                "value": "80.00",
+                "breakdown": {
+                    "item_total": {
+                        "currency_code": "USD",
+                        "value": "80.00"
+                    },
+                    "shipping": {
+                        "currency_code": "USD",
+                        "value": "0.00"
+                    },
+                    "handling": {
+                        "currency_code": "USD",
+                        "value": "0.00"
+                    },
+                    "insurance": {
+                        "currency_code": "USD",
+                        "value": "0.00"
+                    },
+                    "shipping_discount": {
+                        "currency_code": "USD",
+                        "value": "0.00"
+                    }
+                }
+            },
+            "payee": {
+                "email_address": "sb-zv1u7869121@business.example.com",
+                "merchant_id": "JLG2AXZLCLFHC"
+            },
+            "description": "Membresia Anual",
+            "soft_descriptor": "PAYPAL *JOHNDOESTES",
+            "items": [
+                {
+                    "name": "Membresia Anual",
+                    "unit_amount": {
+                        "currency_code": "USD",
+                        "value": "80.00"
+                    },
+                    "tax": {
+                        "currency_code": "USD",
+                        "value": "0.00"
+                    },
+                    "quantity": "1",
+                    "description": "Plan temporal SVCBMF",
+                    "image_url": ""
+                }
+            ],
+            "shipping": {
+                "name": {
+                    "full_name": "John Doe"
+                },
+                "address": {
+                    "address_line_1": "Free Trade Zone",
+                    "admin_area_2": "Caracas",
+                    "admin_area_1": "Caracas",
+                    "postal_code": "1012",
+                    "country_code": "VE"
+                }
+            },
+            "payments": {
+                "captures": [
+                    {
+                        "id": "0B8321797A870993W",
+                        "status": "COMPLETED",
+                        "amount": {
+                            "currency_code": "USD",
+                            "value": "80.00"
+                        },
+                        "final_capture": true,
+                        "seller_protection": {
+                            "status": "ELIGIBLE",
+                            "dispute_categories": [
+                                "ITEM_NOT_RECEIVED",
+                                "UNAUTHORIZED_TRANSACTION"
+                            ]
+                        },
+                        "create_time": "2023-10-11T12:03:25Z",
+                        "update_time": "2023-10-11T12:03:25Z"
+                    }
+                ]
+            }
+        }
+    ],
+    "payer": {
+        "name": {
+            "given_name": "John",
+            "surname": "Doe"
+        },
+        "email_address": "sb-4d2wh864245@personal.example.com",
+        "payer_id": "A54AL8M6CZ5RY",
+        "address": {
+            "country_code": "VE"
+        }
+    },
+    "create_time": "2023-10-11T12:02:14Z",
+    "update_time": "2023-10-11T12:03:25Z",
+    "links": [
+        {
+            "href": "https://api.sandbox.paypal.com/v2/checkout/orders/2JT662025Y8122640",
+            "rel": "self",
+            "method": "GET"
+        }
+    ]
+}

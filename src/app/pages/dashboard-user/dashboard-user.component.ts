@@ -10,8 +10,9 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class DashboardUserComponent implements OnInit {
   title = 'Admin Usuario';
-  public user: User;
-  public userprofile: User;
+  public user: User =null;
+  public userprofile: User =null;
+  public userdirectory: User =null;
 
   error: string;
 
@@ -42,12 +43,8 @@ export class DashboardUserComponent implements OnInit {
   getUser(): void {
 
     this.user = JSON.parse(localStorage.getItem('user'));
-    // console.log(this.user);
-    // console.log(this.user.id);
     this.id = this.user.id;
-    // this.getUserRemoto(this.id);
     this.activatedRoute.params.subscribe( ({id}) => this.getUserProfile(id));
-
 
   }
 
@@ -56,12 +53,10 @@ export class DashboardUserComponent implements OnInit {
     this.userService.getUserById(id).subscribe(
       res =>{
         this.userprofile = res[0];
-        error => this.error = error
-        // console.log(this.userprofile);
+        this.userdirectory = res[0].directories;
+        error => this.error = error;
       }
     );
   }
-
-
 
 }

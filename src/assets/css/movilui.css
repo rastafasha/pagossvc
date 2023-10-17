@@ -1,0 +1,113 @@
+.datatable tbody tr td:first-child {
+    width: 20px;
+}
+
+.usuariosmovil{
+    width: 100%;
+    float: left;
+    margin: 3px;
+    display: flex;
+    flex-direction: row;
+}
+.usuariosmovil img{
+    width: 90%;
+    height: auto;
+    margin:0 auto;
+}
+
+
+.inff {
+    display: flex;
+    justify-content: space-around;
+    align-items: start;
+    flex-direction: column;
+
+}
+
+
+
+.tooop{
+    grid-area: 1 / 1 / 2 / 2;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    width: 90%;
+    height: 100%;
+    grid-gap: 0px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+    justify-items: center;
+}
+
+.direct .tooop {
+    width: 78%;
+}
+
+
+
+
+.idd {
+    grid-area: 1 / 1 / 1 / 1;
+}
+.rol {
+    grid-area: 1 / 2 / 1 / 2;
+}
+
+
+.buton {
+    grid-area: 1 / 3 / 1 / 3;
+}
+.monto {
+    grid-area: 1 / 3 / 1 / 3;
+}
+
+.compra{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.top4{
+    grid-area: 1 / 1 / 2 / 2;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-bottom: 1px solid #ccc;
+    justify-items: center;
+}
+
+.stat {
+    grid-area: 1 / 2 / 1 / 2;
+}
+.vald {
+    grid-area: 1 / 3 / 1 / 3;
+}
+
+.buton2 {
+    grid-area: 1 / 4 / 1 / 4;
+}
+
+@media(max-width:768px){
+    .usuariosmovil {
+        width: 48%;
+        float: left;
+        margin: 3px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}
+
+
+@media(max-width:420px){
+    .usuariosmovil {
+        width: 100%;
+    }
+
+    .tooop,
+    .direct .tooop{
+        width: 100%;
+    }
+    
+}

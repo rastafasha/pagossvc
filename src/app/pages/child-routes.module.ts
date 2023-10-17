@@ -26,6 +26,10 @@ import { UserHistorialpagosComponent } from './user-historialpagos/user-historia
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UsersComponent } from './users/users.component';
 import { ProfileComponent } from './profile/profile.component';
+import { PaymentmethodIndexComponent } from './conf/paymentmethod/paymentmethod-index/paymentmethod-index.component';
+import { PaymentmethodEditComponent } from './conf/paymentmethod/paymentmethod-edit/paymentmethod-edit.component';
+import { DirectorioComponent } from '../components/directorio/directorio.component';
+import { PaymentmethodCrearComponent } from './conf/paymentmethod/paymentmethod-crear/paymentmethod-crear.component';
 
 
 
@@ -51,6 +55,10 @@ const childRoutes: Routes = [
     { path: 'currency/:id', component: CurrenciesIndexComponent, data:{title:'Moneda'} },
     { path: 'currencies/create', component: CurrenciesEditComponent, data:{title:'Crear Moneda'} },
     { path: 'currency/edit/:id', component: CurrenciesEditComponent, data:{title:'Editar Moneda'} },
+    //paymentmethods
+    { path: 'paymentmethods', component: PaymentmethodIndexComponent, data:{title:'Monedas'} },
+    { path: 'paymentmethod/create', component: PaymentmethodCrearComponent, data:{title:'Crear Moneda'} },
+    { path: 'paymentmethod/edit/:id', component: PaymentmethodEditComponent, data:{title:'Editar Moneda'} },
     //admin
     { path: 'payments',   component: PaymentsComponent, data:{title:'Pagos'} },
     { path: 'payment-detail/:id', component: PaymentDetailsComponent, data:{title:'Detalle Pago'} },
@@ -66,6 +74,7 @@ const childRoutes: Routes = [
     { path: 'profile/:id',  component: ProfileComponent, data:{title:'Perfil'} },
     //directorio
     { path: 'directorio',  component: DirectorioIndexComponent, data:{title:'Directorio'} },
+    { path: 'directorios',  component: DirectorioComponent, data:{title:'Directorio'} },
     { path: 'directorio/create', component: DirectorioEditComponent, data:{title:'Directorio Crear'} },
     { path: 'directorio/edit/:id', component: DirectorioEditComponent, data:{title:'Directorio Editar'} },
     { path: 'directorio/member/edit/:user_id', component: DirectorioEditComponent, data:{title:'Directorio Editar'} },

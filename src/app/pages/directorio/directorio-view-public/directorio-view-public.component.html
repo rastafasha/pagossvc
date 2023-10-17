@@ -21,7 +21,7 @@
         <div class="clear"></div>
         <section class="section profile">
             <div class="row">
-                <div class="col-xl-3">
+                <div class="col-xl-4">
 
                     <div class="card">
                         <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
@@ -42,27 +42,32 @@
                                 <span class="badge bg-success" *ngIf="userprofile.role === 'MEMBER'">Miembro</span>
                                 <span class="badge bg-secondary" *ngIf="userprofile.role === 'GUEST'">Invitado</span>
                             </h3>
-
-
-                            <div *ngIf="!directory">
-                                no data social
-                            </div>
-
-                            <!-- <span [ngClass]="user.is_active == 1 ? 'badge bg-success' : 'badge bg-warning'" class="badge bg-success">{{user.is_active == 1? 'Activo':'Offline'}}</span> -->
                             <div class="social-links mt-2">
                                 <a *ngIf="directory.twitter " [href]="directory.twitter " class="twitter"><i class="bi bi-twitter"></i></a>
                                 <a *ngIf="directory.facebook " [href]="directory.facebook" class="facebook"><i class="bi bi-facebook"></i></a>
                                 <a *ngIf="directory.instagram " [href]="directory.instagram" class="instagram"><i class="bi bi-instagram"></i></a>
                                 <a *ngIf="directory.linkedin " [href]="directory.linkedin " class="linkedin"><i class="bi bi-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body ">
 
+                            <div class="imgqr">
+                                <qr-code class="code" id="box" [value]="directory.vcard" [size]="240">
+                                    <img style="margin: auto;">
+                                </qr-code>
+                                <div class="clear"></div>
+                                <br>
 
+                                <a class="btn btn-outline-primary btn-sm" [href]="href" (click)="downloadImage()" download="QR_SVCBMF_{{directory.nombre}}_{{directory.surname}}"><i class="fa fa-download"></i> Descargar QR</a>
                             </div>
                         </div>
                     </div>
 
                 </div>
 
-                <div class="col-xl-9">
+                <div class="col-xl-8">
 
                     <div class="card">
                         <div class="card-body pt-3">
@@ -173,19 +178,6 @@
 
 
                                 </div>
-                            </div>
-                            <div class="clear"></div>
-                            <br>
-                            <hr>
-                            <br>
-                            <div class="imgqr">
-                                <qr-code class="code" id="box" [value]="directory.vcard" [size]="250">
-                                    <img style="margin: auto;">
-                                </qr-code>
-                                <div class="clear"></div>
-                                <br>
-
-                                <a class="btn btn-outline-primary" [href]="href" (click)="downloadImage()" download="QR_SVCBMF_{{directory.nombre}}_{{directory.surname}}"><i class="fa fa-download"></i> Descargar QR</a>
                             </div>
 
                         </div>

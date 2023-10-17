@@ -8,7 +8,7 @@
                 <th scope="col">Role</th>
             </tr>
         </thead>
-        <tbody *ngFor="let user of users | slice: 0:5">
+        <tbody *ngFor="let user of recientes | slice: 0:5">
             <tr>
 
                 <th scope="row"><a [routerLink]="['/dashboard/user/', user.id]">{{user.username}}</a></th>
@@ -18,7 +18,7 @@
                     <span class="badge bg-dark" *ngIf="user.role === 'SUPERADMIN'">SuperAdmin</span>
                     <span class="badge bg-primary" *ngIf="user.role === 'ADMIN'">Admin</span>
                     <span class="badge bg-success" *ngIf="user.role === 'MEMBER'">Miembro</span>
-                    <span class="badge bg-secondary" *ngIf="user.role === 'GUEST'">Invitado</span>
+                    <span class="badge bg-danger" *ngIf="user.role === 'GUEST'">Invitado</span>
 
                 </td>
             </tr>

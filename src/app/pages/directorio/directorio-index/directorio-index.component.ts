@@ -22,14 +22,14 @@ export class DirectorioIndexComponent implements OnInit {
   usersCount = 0;
   usuarios: User[]=[];
   user: User;
-  directories: any;
   directory: Directorio;
-
+  
   p: number = 1;
   count: number = 8;
-
+  
   error: string;
   msm_error: string;
+  directories: any;
   query:string ='';
 
 

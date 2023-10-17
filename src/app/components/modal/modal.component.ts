@@ -23,6 +23,7 @@ export class ModalComponent implements OnInit {
   @Input() name;
   @Input() surname;
   @Input() status;
+  @Input() created;
 
 
 
