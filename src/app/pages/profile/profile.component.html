@@ -51,7 +51,7 @@
                         </div>
                     </div>
                     <div class="card">
-                        <div class="card-body profile-card pt-4  fichasmall">
+                        <div class="card-body profile-card pt-4  fichasmall fichachangepass ">
                             <!-- Change Password Form -->
                             <form [formGroup]="passwordForm" (ngSubmit)="cambiarPassword()">
                                 <div class="row mb-3">
@@ -199,7 +199,7 @@
                                                     <input type="text" formControlName="website" value="website" class="form-control">
                                                 </div>
 
-                                                <div class="col-xs-12 col-md-6">
+                                                <div class="col-xs-12 col-md-12">
                                                     <label for="exampleInputEmail1">Email<span class="required">*</span></label>
                                                     <input type="text" formControlName="email" value="email" class="form-control" required>
 
@@ -213,10 +213,10 @@
                                                     <label for="exampleInputEmail1">Ciudad</label>
                                                     <input type="text" formControlName="ciudad" class="form-control">
                                                 </div>
-                                                <div class="col-xs-12 col-md-6">
+                                                <!-- <div class="col-xs-12 col-md-6">
                                                     <label for="exampleInputEmail1">Teléfonos</label>
                                                     <input type="text" formControlName="telefonos" class="form-control">
-                                                </div>
+                                                </div> -->
 
                                                 <div class="col-xs-12 col-md-6">
                                                     <label for="exampleInputEmail1">Teléfonos Principal  <span class="required">*</span></label>
@@ -224,14 +224,15 @@
 
                                                 </div>
                                                 <div class="col-xs-12 col-md-6">
-                                                    <label for="exampleInputEmail1">Teléfonos Adicional(Opcional)</label>
-                                                    <input type="text" formControlName="tel1" value="tel1" class="form-control">
-                                                </div>
-                                                <div class="col-xs-12 col-md-6">
                                                     <label for="exampleInputEmail1">Teléfonos Móvil  </label>
                                                     <input type="text" formControlName="telmovil" value="telmovil" class="form-control">
 
                                                 </div>
+                                                <div class="col-xs-12 col-md-6">
+                                                    <label for="exampleInputEmail1">Teléfonos Adicional(Opcional)</label>
+                                                    <input type="text" formControlName="tel1" value="tel1" class="form-control">
+                                                </div>
+                                                
                                                 <div class="col-xs-12 col-md-6">
                                                     <label for="exampleInputEmail1">Teléfonos Home(Opcional)</label>
                                                     <input type="text" formControlName="telhome" value="telhome" class="form-control">

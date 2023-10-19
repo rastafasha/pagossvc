@@ -35,4 +35,12 @@
     .producto {
         background-position: center;
     }
+
+    .info h2 {
+        font-size: 2rem;
+    }
+
+    .info ul.icons li {
+        margin: 10px;
+    }
 }

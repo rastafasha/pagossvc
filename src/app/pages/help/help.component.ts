@@ -15,23 +15,10 @@ export class HelpComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.closeMenu();
+    this.userService.closeMenu();
     window.scrollTo(0,0);
   }
 
-  closeMenu(){
-    var menuLateral = document.getElementsByClassName("sidebar");
-      for (var i = 0; i<menuLateral.length; i++) {
-         menuLateral[i].classList.remove("active");
-
-      }
-
-      var menuLateral = document.getElementsByClassName("mini-sidebar");
-      for (var i = 0; i<menuLateral.length; i++) {
-         menuLateral[i].classList.remove("active");
-
-      }
-  }
   
 
   goBack() {

@@ -1278,6 +1278,10 @@ When click on sidebar toggler and also for tablet
     .mini-sidebar .sidebar-nav #sidebarnav>li:hover>a .label {
         display: none;
     }
+
+    .mini-sidebar .left-sidebar .sidebar-nav ul li a span{
+        display: none;
+    }
 }
 
 @media (max-width: 767px) {
@@ -1292,6 +1296,8 @@ When click on sidebar toggler and also for tablet
     .mini-sidebar.show-sidebar .sidebar-footer {
         left: 0px;
     }
+
+    
 }
 
 
@@ -1496,7 +1502,9 @@ File: scss
 }
 
 .topbar ul.dropdown-user li .dw-user-box .u-img {
-    width: 70px;
+    width: 50px;
+    height: 50px;
+    float: left;
     display: inline-block;
     vertical-align: top;
 }
@@ -1541,6 +1549,10 @@ File: scss
     background: #e9edf2;
     color: #398bf7;
     text-decoration: none;
+}
+
+.topbar .dw-user-box  .u-text a{
+    padding: 0 !important;
 }
 
 .search-box .app-search {

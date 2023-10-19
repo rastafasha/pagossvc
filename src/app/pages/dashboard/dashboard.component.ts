@@ -26,16 +26,8 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.closeMenu();
+    this.userService.closeMenu();
     this.getUser();
-  }
-
-  closeMenu(){
-    var menuLateral = document.getElementsByClassName("sidebar");
-      for (var i = 0; i<menuLateral.length; i++) {
-         menuLateral[i].classList.remove("active");
-
-      }
   }
 
   getUser(): void {

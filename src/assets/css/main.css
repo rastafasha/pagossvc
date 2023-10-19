@@ -14,6 +14,7 @@
 @import url('./estilo-modalInvoice.css');
 @import url('./menu-movil.css');
 @import url('./movilui.css');
+@import url('./profile.css');
 .cursor {
     cursor: pointer;
 }

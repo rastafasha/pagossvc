@@ -100,7 +100,7 @@ export class HeaderComponent implements OnInit {
     var menuLateral = document.getElementsByClassName("mini-sidebar");
       for (var i = 0; i<menuLateral.length; i++) {
          menuLateral[i].classList.toggle("show-sidebar");
-        //console.log('pulsado', menuLateral);
+        // console.log('pulsado', menuLateral);
 
       }
   }

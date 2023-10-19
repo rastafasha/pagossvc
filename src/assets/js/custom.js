@@ -47,15 +47,15 @@ function HOMEINIT($, undefined) {
             $('.navbar-brand span').hide();
 
         }
-        alert('funciona!');
+        // alert('funciona!');
     });
 
     // this is for close icon when navigation open in mobile view
-    $(".nav-toggler").click(function() {
-        $("body").toggleClass("show-sidebar");
-        $(".nav-toggler i").toggleClass("ti-menu");
-        $(".nav-toggler i").addClass("ti-close");
-    });
+    // $(".nav-toggler").click(function() {
+    //     $("body").toggleClass("show-sidebar");
+    //     $(".nav-toggler i").toggleClass("ti-menu");
+    //     $(".nav-toggler i").addClass("ti-close");
+    // });
 
     $(".search-box a, .search-box .app-search .srh-btn").on('click', function() {
         $(".app-search").toggle(200);

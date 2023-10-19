@@ -43,7 +43,7 @@ export class UsersComponent implements OnInit {
 
   ngOnInit(): void {
     window.scrollTo(0,0);
-    this.closeMenu();
+    this.userService.closeMenu();
     this.getUsers();
     this.getUser();
   }
@@ -99,14 +99,6 @@ export class UsersComponent implements OnInit {
 
   goBack() {
     this.location.back(); // <-- go back to previous location on cancel
-  }
-
-  closeMenu(){
-    var menuLateral = document.getElementsByClassName("sidebar");
-      for (var i = 0; i<menuLateral.length; i++) {
-         menuLateral[i].classList.remove("active");
-
-      }
   }
 
   search() {

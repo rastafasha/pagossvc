@@ -52,17 +52,10 @@
                     <div class="card profile  animated fadeInUp shadow">
 
                         <div class="card-body profile-card pt-4   fichasmall">
-                            <!-- <div *ngIf="!userprofile">
-                                <img src="./assets/images/no-image.jpg" style="height: 80px; width: 80px;" class="img-circle avatar">
-                            </div>
-                            <div *ngIf="userprofile.directories[0].image">
-                                <img [src]="userprofile.directories[0].image | imagenPipe: 'directories'" style="height: 80px; width: 80px;" class="img-circle avatar">
-
-                            </div> -->
+                            
                             <div class="inffichasmall">
                                 <!-- <img [src]="userprofile.directories[0].image | imagenPipe: 'users'" [alt]="user.username" class="rounded-circle"> -->
                                 <h2>{{user.username}}</h2>
-
                                 <p>Usuario desde:<br>{{user.created_at | date:'MMM d, y, h:mm:ss a'}}</p>
                             </div>
 
@@ -76,10 +69,6 @@
                         <div class="card-body pt-3">
                             <!-- Bordered Tabs -->
                             <ul class="nav nav-tabs nav-tabs-bordered">
-
-                                <!-- <li class="nav-item">
-                                    <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#divisas">Divisas</button>
-                                </li> -->
 
                                 <li class="nav-item">
                                     <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#recentPayments">Transacciones Recientes</button>
@@ -96,10 +85,6 @@
                                     <br />
                                     <app-pagos-recientes></app-pagos-recientes>
                                 </div>
-                                <!-- <div class="tab-pane fade show  recentPayments" id="divisas">
-                                    <app-dolar-today></app-dolar-today>
-                                </div> -->
-
                                 <div class="tab-pane fade profile-edit pt-3" id="status">
                                     <app-usuarios-recientes></app-usuarios-recientes>
                                 </div>

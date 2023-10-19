@@ -36,19 +36,11 @@ export class PaymentsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.closeMenu();
+    this.userService.closeMenu();
     this.getPagos();
     window.scrollTo(0,0);
-    // this.getPagos_list();
   }
 
-  closeMenu(){
-    var menuLateral = document.getElementsByClassName("sidebar");
-      for (var i = 0; i<menuLateral.length; i++) {
-         menuLateral[i].classList.remove("active");
-
-      }
-  }
 
   search() {
     return this.paymentService.search(this.query).subscribe(

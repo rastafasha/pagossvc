@@ -119,11 +119,20 @@ export class UserService {
   }
 
   closeMenu(){
-    var menuLateral = document.getElementsByClassName("sidebar");
+    var menuLateral = document.getElementsByClassName("mini-sidebar");
       for (var i = 0; i<menuLateral.length; i++) {
-         menuLateral[i].classList.remove("active");
+         menuLateral[i].classList.remove("show-sidebar");
+        // console.log('pulsado', menuLateral);
 
       }
+  }
+  closeMenuSidebar(){
+    var menuLateral = document.getElementsByClassName("sidebar");
+    for (var i = 0; i<menuLateral.length; i++) {
+       menuLateral[i].classList.remove("active");
+
+    }
+
   }
 
   changePassword(data:User){

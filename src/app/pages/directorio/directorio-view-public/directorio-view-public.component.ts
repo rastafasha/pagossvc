@@ -46,18 +46,11 @@ export class DirectorioViewPublicComponent implements OnInit {
 
   ngOnInit(): void {
     window.scrollTo(0,0);
-    this.closeMenu();
+    this.userService.closeMenu();
     this.activatedRoute.params.subscribe( ({id}) => this.getUserRemoto(id));
     // this.activatedRoute.params.subscribe( ({id}) => this.getDirectory(id));
   }
 
-  closeMenu(){
-    var menuLateral = document.getElementsByClassName("sidebar");
-      for (var i = 0; i<menuLateral.length; i++) {
-         menuLateral[i].classList.remove("active");
-
-      }
-  }
 
   getUser(): void {
     this.user = JSON.parse(localStorage.getItem('user'));

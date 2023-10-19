@@ -48,17 +48,9 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit(): void {
     window.scrollTo(0,0);
-    this.closeMenu();
+    this.userService.closeMenu();
     this.getUser();
     this.activatedRoute.params.subscribe( ({id}) => this.getUserRemoto(id));
-  }
-
-  closeMenu(){
-    var menuLateral = document.getElementsByClassName("sidebar");
-      for (var i = 0; i<menuLateral.length; i++) {
-         menuLateral[i].classList.remove("active");
-
-      }
   }
 
   getUser(): void {
