@@ -19,6 +19,7 @@ import { QRCodeModule } from 'angular2-qrcode';
 
 // paginacion
 import { NgxPaginationModule } from 'ngx-pagination';
+import { CKEditorModule } from 'ckeditor4-angular';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     BrowserAnimationsModule,
     AngularFileUploaderModule,
     QRCodeModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    CKEditorModule
   ]
 })
 export class DirectoryModule { }

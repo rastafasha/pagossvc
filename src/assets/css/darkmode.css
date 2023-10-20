@@ -1,7 +1,38 @@
+/* detectar darkmode */
+/* Light mode */
+/* @media (prefers-color-scheme: light) {
+    body {
+        background-color: var(--white);
+        color: var(--black);
+    }
+} */
+
+/* Dark mode */
+/* @media (prefers-color-scheme: dark) {
+    body {
+        background-color: var(--black);
+        color: var(--white);
+    }
+} */
+/* detectar darkmode */
+
 .dark {
     background-color: var(--black);
     color: var(--white);
 }
+.dark .topbar {
+    background: var(--black);
+}
+
+.topbar {
+    background: var(--white);
+}
+
+.dark .elementostop{
+    color: var(--white) ;
+    background-color: var(--black); 
+}
+
 
 .dark .sidebar-nav .nav-link {
     background-color: var(--black);

@@ -75,3 +75,19 @@
         margin-left: 22px;
     }
 }
+
+@media(max-width:480px){
+    .socialicos,
+    .phones {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr );
+    }
+    .records {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr );
+    }
+
+    .esp{
+        grid-area: 2 / 4 / 2 / 1;
+    }
+}
