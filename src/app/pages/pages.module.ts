@@ -48,6 +48,7 @@ import { DirectoryModule } from './directorio/directory.module';
 //Qr
 import { QRCodeModule } from 'angular2-qrcode';
 import { CKEditorModule } from 'ckeditor4-angular';
+import { InstallPwaComponent } from './install-pwa/install-pwa.component';
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -68,6 +69,7 @@ import { CKEditorModule } from 'ckeditor4-angular';
     PaymentsComponent,
     PaymentEditComponent,
     ReportarPagoComponent,
+    InstallPwaComponent
   ],
   exports: [
     DashboardComponent,
@@ -87,6 +89,7 @@ import { CKEditorModule } from 'ckeditor4-angular';
     PaymentsComponent,
     PaymentEditComponent,
     ReportarPagoComponent,
+    InstallPwaComponent
 
   ],
   imports: [

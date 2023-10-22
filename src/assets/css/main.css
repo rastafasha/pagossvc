@@ -140,6 +140,8 @@ b{
     display: inline-block;
     vertical-align: middle;
     color: #555f6d;
+    width: 30px;
+    text-align: center;
 }
 
 .headerright {

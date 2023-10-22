@@ -35,6 +35,7 @@ import { DirectorioComponent } from './directorio/directorio.component';
     ProductItemComponent,
     ModalComponent,
     DirectorioComponent,
+    
   ],
   exports: [
     DolarTodayComponent,

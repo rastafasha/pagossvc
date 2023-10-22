@@ -30,6 +30,7 @@ import { PaymentmethodIndexComponent } from './conf/paymentmethod/paymentmethod-
 import { PaymentmethodEditComponent } from './conf/paymentmethod/paymentmethod-edit/paymentmethod-edit.component';
 import { DirectorioComponent } from '../components/directorio/directorio.component';
 import { PaymentmethodCrearComponent } from './conf/paymentmethod/paymentmethod-crear/paymentmethod-crear.component';
+import { InstallPwaComponent } from './install-pwa/install-pwa.component';
 
 
 
@@ -84,6 +85,7 @@ const childRoutes: Routes = [
     { path: 'search/:searchItem', component: UsersComponent, data:{title:'Buscar'} },
     { path: 'help', component: HelpComponent, data:{title:'Ayuda'} },
     { path: 'contact', component: ContactComponent, data:{title:'Contacto'} },
+    { path: 'install-pwa', component: InstallPwaComponent, data:{title:'Contacto'} },
 
 
     { path: '', redirectTo: 'admin', pathMatch: 'full' },
