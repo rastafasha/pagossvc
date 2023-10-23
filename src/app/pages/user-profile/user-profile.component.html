@@ -45,6 +45,10 @@
                                 <span class="badge bg-primary" *ngIf="userprofile.role === 'ADMIN'">Admin</span>
                                 <span class="badge bg-success" *ngIf="userprofile.role === 'MEMBER'">Miembro</span>
                                 <span class="badge bg-secondary" *ngIf="userprofile.role === 'GUEST'">Invitado</span>
+
+                                <a [routerLink]="['/dashboard/rolesconf']">
+                                    <button class="btn btn-success">Modificar Rol</button>
+                                </a>
                             </div>
                         </div>
                     </div>

@@ -10,7 +10,7 @@ export class Plan {
   currency_id: any ;
   created_at: string;
   updated_at: string;
-  status?: 'APPROVED' | 'PENDING' | 'REJECTED';
+  status?: 'PUBLISHED' | 'PENDING' | 'REJECTED';
   // description: string;
   // category:string;
 

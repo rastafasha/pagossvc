@@ -34,7 +34,7 @@ export class PlanesService {
     }
   }
 
-  get status(): 'APPROVED' | 'PENDING' | 'REJECTED' {
+  get status(): 'PUBLISHED' | 'PENDING' | 'REJECTED' {
     return this.plan.status!;
   }
 

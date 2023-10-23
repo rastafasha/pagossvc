@@ -76,7 +76,7 @@
                                     <td>{{plan.name}}</td>
                                     <td>{{plan.price|currency}} </td>
                                     <td>
-                                        <span class="badge bg-success" *ngIf="plan.status === 'APROVED'">Aprobado</span>
+                                        <span class="badge bg-success" *ngIf="plan.status === 'PUBLISHED'">Aprobado</span>
                                         <span class="badge bg-primary" *ngIf="plan.status === 'PENDING'">Pendiente</span>
                                         <span class="badge bg-danger" *ngIf="plan.status === 'REJECTED'">Rechazado</span>
                                     </td>

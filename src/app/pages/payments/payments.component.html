@@ -74,7 +74,13 @@
                                     <th><a [routerLink]="['/dashboard/user/', pago.user_id]">{{pago.user_id}}</a></th>
                                     <td>{{pago.metodo}}</td>
                                     <td>{{pago.monto | currency}}</td>
-                                    <td>{{pago.currencies[0].name}}</td>
+                                    <!-- <td>{{pago.currencies[0].name}}</td> -->
+                                    <td>
+                                        <span class="badge bg-info"
+                                        *ngIf="pago.currency_id === 1">USD</span>
+                                        <span class="badge bg-info"
+                                        *ngIf="pago.currency_id === 2">Bs.VES</span>
+                                    </td>
 
                                     <td>
                                         <span class="badge bg-success"

@@ -213,10 +213,8 @@ this.user = this.userService.user;
     get linkedin() { return this.directorioForm.get('linkedin'); }
     get status() { return this.directorioForm.get('status'); }
     get user_id() { return this.directorioForm.get('user_id'); }
-
-    get image() {
-      return this.directorioForm.get('image');
-    }
+    get image() { return this.directorioForm.get('image'); }
+    
 
   avatarUpload(datos) {
     const data = JSON.parse(datos.response);
