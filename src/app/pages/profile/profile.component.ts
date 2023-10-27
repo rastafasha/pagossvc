@@ -258,7 +258,7 @@ export class ProfileComponent implements OnInit {
   get linkedin() { return this.directorioForm.get('linkedin'); }
   get user_id() { return this.directorioForm.get('user_id'); }
   get image() { return this.directorioForm.get('image'); }
-
+  
 
   guardarDirectorio() {debugger
     this.formularioVcardGe();
