@@ -59,11 +59,11 @@
                                         <li class="badge bg-primary">Paypal</li>
                                         <li class="badge bg-primary">Zelle</li>
                                         <li class="badge bg-primary">Pago Móvil</li>
-                                        <li class="badge bg-primary">Transferencia</li>
+                                        <li class="badge bg-primary">Transferencia nacional e internacional</li>
                                     </ul>
                                 </li>
                                 <li>Ingrese los datos correctamente, y verifique antes de pagar </li>
-                                <li>Copiar el <b>Número de referencia</b> del pago o transferencia </li>
+                                <li>Copiar el <b>Número de Referencia</b> del pago o transferencia </li>
                                 <li>Dirigirse a nuestro <b>Formulario</b> y llenar los datos requeridos </li>
                                 <li>Pegar el <b>Número de referencia</b> en el campo correspondido </li>
                                 <li>Adjuntar la foto del pago </li>
@@ -76,23 +76,23 @@
                     <div class="clear"></div>
                     <div class="datosTranf" >
                         <div class="datos"*ngFor="let pago of paymentMethods">
-                            <h3>{{pago.type}}</h3>
+                            <h3>{{pago.type | uppercase}}</h3>
                             <div class="clear"></div>
-                            <p><b>Metodo:</b> {{pago.type}}</p>
+                            <p><b>Método:</b> {{pago.type}}</p>
                             <p *ngIf="pago.email"><b>Correo:</b> {{pago.email}}</p>
                             <p *ngIf="pago.bankName"><b>Banco:</b> {{pago.bankName}}</p>
                             <p *ngIf="pago.bankAccount"><b>No.Cuenta:</b> {{pago.bankAccount}}</p>
-                            <p *ngIf="pago.bankAccountType"><b>Tipo Cuenta:</b> {{pago.bankAccountType}}</p>
+                            <p *ngIf="pago.bankAccountType"><b>Tipo de Cuenta:</b> {{pago.bankAccountType}}</p>
                             <p *ngIf="pago.ciorif"><b>No.Cuenta o Rif:</b> {{pago.ciorif}}</p>
-                            <p *ngIf="pago.telefono"><b>Telefono:</b> {{pago.telefono}}</p>
-                            <p><b>Requerido:</b> reference y/o photo</p>
+                            <p *ngIf="pago.telefono"><b>Teléfono:</b> {{pago.telefono}}</p>
+                            <p><b>Requerido:</b> referencia y/o foto</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="tab-pane fade pt-3" id="formulario">
 
-                    <section class="section dashboard">
+                    <section class="section dashboard carpagos ">
 
                         <form class="form-horizontal form-material formPagar" (submit)="updateForm()" enctype="multipart/form-data" [formGroup]="PaymentRegisterForm">
                             <div class="container">
@@ -102,91 +102,118 @@
                                         <div class="div1">
                                             <div class="form-group ">
                                                 <label for="">Tipo De pago </label>
-
-                                                <div class="form-check">
-                                                    <input class="form-check-input" formControlName="metodo" (click)="verpaypal()" type="radio" value="Paypal" id="radiotipo1">
+                                                <br>
+                                                <div class="form-check chickd"    >
+                                                    <input class="form-check-input" formControlName="metodo" [checked]="metodo == 'paypal'" (click)="selectedTypeCoupon('paypal')"  type="radio" value="Paypal" id="radiotipo1">
                                                     <label class="form-check-label" for="radiotipo1">Paypal</label>
                                                 </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" formControlName="metodo" (click)="hidepaypal()" type="radio" value="Zelle" id="radiotipo2">
+                                                <div class="form-check chickd"  >
+                                                    <input class="form-check-input" formControlName="metodo"  [checked]="metodo == 'zelle'" (click)="selectedTypeCoupon('zelle')"   type="radio" value="Zelle" id="radiotipo2">
                                                     <label class="form-check-label" for="radiotipo2">Zelle</label>
                                                 </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" formControlName="metodo" (click)="hidepaypal()" type="radio" value="Transferencia" id="radiotipo3">
+                                                <div class="form-check chickd" >
+                                                    <input class="form-check-input" formControlName="metodo"  [checked]="metodo == 'transferencia'" (click)="selectedTypeCoupon('transferencia')"   type="radio" value="Transferencia" id="radiotipo3">
                                                     <label class="form-check-label" for="radiotipo3">Transferencia</label>
                                                 </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" formControlName="metodo" (click)="hidepaypal()" type="radio" value="Pago Movil" id="radiotipo4">
+                                                <div class="form-check chickd" >
+                                                    <input class="form-check-input" formControlName="metodo"  [checked]="metodo == 'pagomovil'" (click)="selectedTypeCoupon('pagomovil')"   type="radio" value="Pago Movil" id="radiotipo4">
                                                     <label class="form-check-label" for="radiotipo4">Pago Movil</label>
                                                 </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" formControlName="metodo" (click)="hidepaypal()" type="radio" value="Efectivo" id="radiotipo5">
+                                                <div class="form-check chickd" >
+                                                    <input class="form-check-input" formControlName="metodo"  [checked]="metodo == 'efectivo'" (click)="selectedTypeCoupon('efectivo')"   type="radio" value="Efectivo" id="radiotipo5">
                                                     <label class="form-check-label" for="radiotipo5">Efectivo</label>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="div2">
-                                            <div class="form-group ">
-                                                <label for="">Nombre Banco </label>
-                                                <input type="text" formControlName="bank_name" class="form-control">
+                                        <div *ngIf="!metodo" class="divinfo">
+                                            <div class="container">
+                                                <div class="col-xs-12 movil">
+                                                    <h3 class="text-center Bordered">
+                                                        <i class="fa fa-arrow-up" aria-hidden="true"></i> 
+                                                        Seleccione Su Método de Pago</h3>
+                                                </div>
+                                                <div class="col-sm-12 desktop">
+                                                    <h3 class="text-center Bordered"><i class="fa fa-arrow-left" aria-hidden="true"></i> Seleccione Su Método de Pago</h3>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="div3">
-                                            <div class="form-group ">
-                                                <label for="">Num. referencia </label>
-                                                <input type="text" formControlName="referencia" class="form-control">
+                                        <div *ngIf="metodo == 'paypal'" class="divpaypal">
+                                            <button routerLink="/dashboard/planes/all" class="button btn btn-outline-success btn-paypal">
+                                                <i class="fa fa-paypal"></i>
+                                                Pagar por Paypal
+                                            </button>
+                                        </div>
+                                        <div class="divform" *ngIf="metodo == 'zelle'|| metodo == 'transferencia'|| metodo == 'pagomovil'|| metodo == 'efectivo'">
+                                            <div class="div2">
+                                                <div class="form-group ">
+                                                    <label for="">Nombre Banco </label>
+                                                    <input type="text" formControlName="bank_name" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="div3">
+                                                <div class="form-group ">
+                                                    <label for="">Num. referencia </label>
+                                                    <input type="text" formControlName="referencia" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="div4">
+                                                <div class="form-group " *ngIf="!total">
+                                                    <label for="">Monto</label>
+                                                    <input type="text" formControlName="monto" class="form-control">
+                                                </div>
+                                                <div class="form-group " *ngIf="total">
+                                                    <label for="">Monto</label>
+                                                    <p>Monto A pagar:{{total|currency}}</p>
+                                                    <input type="text" formControlName="monto" class="form-control" placeholder="ejemplo 80.00 ">
+                                                </div>
+                                            </div>
+                                            <div class="div5">
+                                                <div class="form-group ">
+                                                    <label for="">Plan</label>
+    
+                                                    <select class="form-control " formControlName="plan_id" required>
+                                              <option disabled  value="">SELECCIONAR</option>
+                                              <option *ngFor="let item of planes" [value]="item.id">{{item.name}} | {{item.price}} </option>
+    
+                                                </select>
+                                                </div>
+                                            </div>
+                                            <div class="div6">
+                                                <div class="form-group ">
+                                                    <label for="">Moneda</label>
+    
+                                                    <select class="form-control " formControlName="currency_id" required>
+                                                <option disabled  value="">SELECCIONAR</option>
+                                                <option *ngFor="let item of currenciesAll" [value]="item.id">{{item.name}}</option>
+    
+                                            </select>
+                                                </div>
+                                            </div>
+                                            <div class="div7">
+                                                <div class="form-group ">
+                                                    <label for="">Nombre y Apellido(en cuenta pagadora) </label>
+                                                    <input type="text" formControlName="nombre" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="div8">
+                                                <div class="form-group ">
+                                                    <label for="">Email (en cuenta pagadora)</label>
+                                                    <input type="text" formControlName="email" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="div9">
+                                                <div class="form-group ">
+                                                    <label for="">Fecha del Pago</label>
+                                                    <input type="date" formControlName="fecha" class="form-control">
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="div4">
-                                            <div class="form-group " *ngIf="!total">
-                                                <label for="">Monto</label>
-                                                <input type="text" formControlName="monto" class="form-control">
-                                            </div>
-                                            <div class="form-group " *ngIf="total">
-                                                <label for="">Monto</label>
-                                                <p>{{total}}</p>
-                                                <input type="text" formControlName="monto" class="form-control" placeholder="ejemplo 80.00 ">
-                                            </div>
-                                        </div>
-                                        <div class="div5">
-                                            <div class="form-group ">
-                                                <label for="">Plan</label>
-
-                                                <select class="form-control " formControlName="plan_id" required>
-                                          <option disabled  value="">SELECCIONAR</option>
-                                          <option *ngFor="let item of planes" [value]="item.id">{{item.name}} | {{item.price}} </option>
-
-                                      </select>
-                                            </div>
-                                        </div>
-                                        <div class="div6">
-                                            <div class="form-group ">
-                                                <label for="">Moneda</label>
-
-                                                <select class="form-control " formControlName="currency_id" required>
-                                            <option disabled  value="">SELECCIONAR</option>
-                                            <option *ngFor="let item of currenciesAll" [value]="item.id">{{item.name}}</option>
-
-                                        </select>
-                                            </div>
-                                        </div>
-                                        <div class="div7">
-                                            <div class="form-group ">
-                                                <label for="">Nombre y Apellido(en cuenta pagadora) </label>
-                                                <input type="text" formControlName="nombre" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="div8">
-                                            <div class="form-group ">
-                                                <label for="">Email (en cuenta pagadora)</label>
-                                                <input type="text" formControlName="email" class="form-control">
-                                            </div>
-                                        </div>
+                                        
                                     </div>
 
 
                                 </div>
-                                <div class="col-xs-12 col-md-4 imagenypaypal">
+                                <div class="col-xs-12 col-md-4 imagenypaypal" *ngIf="metodo == 'zelle'|| metodo == 'transferencia'|| metodo == 'pagomovil'|| metodo == 'efectivo'">
                                     <div class="form-group form-row">
 
                                         <p>Imagen del pago (requerido) <br> (peso max: 500kb )</p>
@@ -196,11 +223,7 @@
 
                                         </div>
                                     </div>
-                                    <div class="vibiblepayp">
-                                        <a routerLink="/dashboard/planes/all">
-                                            <div class="button btn btn-outline-success">Pagar por Paypal</div>
-                                        </a>
-                                    </div>
+                                    
                                 </div>
 
 
@@ -208,7 +231,7 @@
                             </div>
                             <div class="clear"></div><br>
 
-                            <button class="btn btn-outline-success " type="submit">Registrar Pago</button>
+                            <button class="btn btn-outline-success " *ngIf="metodo == 'zelle'|| metodo == 'transferencia'|| metodo == 'pagomovil'|| metodo == 'efectivo'"  type="submit">Registrar Pago</button>
 
 
                         </form>

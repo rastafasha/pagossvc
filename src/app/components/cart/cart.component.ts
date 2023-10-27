@@ -15,6 +15,7 @@ import { Plan } from 'src/app/models/plan';
 import { AlertService } from 'src/app/services/alert.service';
 import { PaymentService } from 'src/app/services/payment.service';
 import { MessageService } from 'src/app/services/message.service';
+import { PaymentMethod } from 'src/app/models/paymentMethod';
 
 
 @Component({
@@ -26,6 +27,7 @@ export class CartComponent implements OnInit {
 
 
   @Input() cartItem: CartItemModel;
+  tipodePago: PaymentMethod;
 
   cartItems=[];
   total= 0;
@@ -35,7 +37,6 @@ export class CartComponent implements OnInit {
   product:Plan;
 
   public payPalConfig ? : IPayPalConfig;
-
 
 
   constructor(

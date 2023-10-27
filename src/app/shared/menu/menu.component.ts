@@ -21,7 +21,7 @@ declare var jQuery: any;
 
 
 export class MenuComponent implements OnInit {
-  year: number = new Date().getFullYear();
+  
 
   @ViewChild('sidenav') sidenav;
 

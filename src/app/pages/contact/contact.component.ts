@@ -14,7 +14,7 @@ import { UserService } from 'src/app/services/user.service';
 export class ContactComponent implements OnInit {
   title = "Contacto"
   error: string;
-
+  year: number = new Date().getFullYear();
   contactForm:FormGroup;
   constructor(
     private router: Router,

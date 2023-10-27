@@ -55,8 +55,9 @@
                             
                             <div class="inffichasmall">
                                 <!-- <img [src]="userprofile.directories[0].image | imagenPipe: 'users'" [alt]="user.username" class="rounded-circle"> -->
-                                <h2>{{user.username}}</h2>
-                                <p>Usuario desde:<br>{{user.created_at | date:'MMM d, y, h:mm:ss a'}}</p>
+                                <p>!Hola!:</p>
+                                <h4>{{user.username}}</h4>
+                                <!-- <p>Usuario desde:<br>{{user.created_at | date:'MMM d, y, h:mm:ss a'}}</p> -->
                             </div>
 
                         </div>
@@ -67,14 +68,15 @@
 
                     <div class="card  animated fadeInUp shadow">
                         <div class="card-body pt-3">
+                            <h2>Recientes</h2>
                             <!-- Bordered Tabs -->
                             <ul class="nav nav-tabs nav-tabs-bordered">
 
                                 <li class="nav-item">
-                                    <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#recentPayments">Transacciones Recientes</button>
+                                    <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#recentPayments">Transacciones</button>
                                 </li>
                                 <li class="nav-item">
-                                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#status">Usuarios Recientes</button>
+                                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#status">Usuarios</button>
                                 </li>
 
 

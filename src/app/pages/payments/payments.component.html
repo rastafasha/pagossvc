@@ -62,7 +62,8 @@
                                     <th scope="col">Moneda</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Validación</th>
-                                    <th scope="col">Fecha | Hora</th>
+                                    <th scope="col">Fecha Pago</th>
+                                    <th scope="col">Fecha Creado</th>
                                     <th scope="col">Acciones</th>
                                 </tr>
                             </thead>
@@ -99,6 +100,7 @@
                                             *ngIf="pago.validacion === 'REJECTED'">Rechazado</span>
                                         <!-- <span class="badge bg-success">{{pago.status}}</span> -->
                                     </td>
+                                    <td>{{pago.fecha | date:'MMM d, y'}}</td>
                                     <td>{{pago.created_at | date:'MMM d, y, h:mm:ss a'}}</td>
                                     <td>
                                         <div class="form-check form-switch" title="Verificar">

@@ -186,6 +186,7 @@ export class ReportarPagoComponent implements OnInit {
       status: ['PENDING'],
       validacion: ['PENDING'],
       user_id: [''],
+      fecha: [''],
       image: [''],
     })
   }
@@ -213,6 +214,7 @@ export class ReportarPagoComponent implements OnInit {
     formData.append('nombre', this.PaymentRegisterForm.get('nombre').value);
     formData.append('email', this.PaymentRegisterForm.get('email').value);
     formData.append('plan_id', this.PaymentRegisterForm.get('plan_id').value);
+    formData.append('fecha', this.PaymentRegisterForm.get('fecha').value);
     formData.append('status', 'PENDING');
     formData.append('validacion', 'PENDING');
     
@@ -247,19 +249,8 @@ export class ReportarPagoComponent implements OnInit {
 
 
 
-  verpaypal(){
-    var verPaypalpay = document.getElementsByClassName("vibiblepayp");
-      for (var i = 0; i<verPaypalpay.length; i++) {
-        verPaypalpay[i].classList.toggle("vibiblepaypblok");
-
-      }
-  }
-  hidepaypal(){
-    var verPaypalpay = document.getElementsByClassName("vibiblepayp");
-      for (var i = 0; i<verPaypalpay.length; i++) {
-        verPaypalpay[i].classList.remove("vibiblepaypblok");
-
-      }
+  selectedTypeCoupon(value:any){
+    this.metodo = value;
   }
 
 
