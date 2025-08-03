@@ -170,7 +170,13 @@ export class PlanesEditComponent implements OnInit {
 
       this.planService.updatePlan(this.planForm.value, this.planForm.controls['id'].value).subscribe(
         resp =>{
-          // Swal.fire('Actualizado', `actualizado correctamente`, 'success');
+          Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'actualizado correctamente',
+                            showConfirmButton: false,
+                            timer: 1500,
+                          });
           this.router.navigateByUrl(`/dashboard/planes`);
           // console.log(this.planSeleccionado);
         });
@@ -179,7 +185,13 @@ export class PlanesEditComponent implements OnInit {
       //crear
       this.planService.createPlan(formData)
       .subscribe( (resp: any) =>{
-        Swal.fire('Creado', ` creado correctamente`, 'success');
+        Swal.fire({
+                          position: 'top-end',
+                          icon: 'success',
+                          title: 'creado correctamente',
+                          showConfirmButton: false,
+                          timer: 1500,
+                        });
         this.router.navigateByUrl(`/dashboard/planes`);
         // this.enviarNotificacion();
       })

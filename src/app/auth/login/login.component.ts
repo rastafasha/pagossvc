@@ -88,9 +88,9 @@ login(){
 // Registro
 crearUsuario(){
   this.formSumitted = true;
-  if(this.registerForm.invalid){
-    return;
-  }
+  // if(this.registerForm.invalid){
+  //   return;
+  // }
 
   this.accountService.crearUsuario(this.registerForm.value).subscribe(
     resp =>{
@@ -101,7 +101,7 @@ crearUsuario(){
       this.errors = error.error;
     }
   );
-
+  return false;
 }
 
 campoNoValido(campo: string): boolean {

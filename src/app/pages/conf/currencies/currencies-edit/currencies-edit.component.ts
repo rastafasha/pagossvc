@@ -11,15 +11,13 @@ import { Currencies } from 'src/app/models/currencies';
 import { CurrenciesService } from 'src/app/services/currencies.service';
 import { UserService } from 'src/app/services/user.service';
 
-
 @Component({
   selector: 'app-currencies-edit',
   templateUrl: './currencies-edit.component.html',
-  styleUrls: ['./currencies-edit.component.css']
+  styleUrls: ['./currencies-edit.component.css'],
 })
 export class CurrenciesEditComponent implements OnInit {
-
-  title : string;
+  title: string;
 
   public currencyForm: FormGroup;
   public currency: Currencies;
@@ -27,7 +25,7 @@ export class CurrenciesEditComponent implements OnInit {
   currenciesAll: Currencies;
   error: string;
 
-  idcurrency:any;
+  idcurrency: any;
 
   public currencySeleccionado: Currencies;
 
@@ -37,81 +35,85 @@ export class CurrenciesEditComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private location: Location,
-    private currenciesService: CurrenciesService,
+    private currenciesService: CurrenciesService
   ) {
     this.usuario = usuarioService.user;
     const base_url = environment.apiUrl;
   }
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe( ({id}) => this.cargarCurrency(id));
+    this.activatedRoute.params.subscribe(({ id }) => this.cargarCurrency(id));
     this.validarFormulario();
-    window.scrollTo(0,0);
+    window.scrollTo(0, 0);
 
-    if(this.currencySeleccionado){
+    if (this.currencySeleccionado) {
       //actualizar
       this.title = 'Creando Moneda';
-
-    }else{
+    } else {
       //crear
       this.title = 'Edit Moneda';
     }
   }
 
-  validarFormulario(){
+  validarFormulario() {
     this.currencyForm = this.fb.group({
-      name: ['',Validators.required],
-    })
+      name: ['', Validators.required],
+    });
   }
 
-  cargarCurrency(id: number){
-
-
+  cargarCurrency(id: number) {
     if (id !== null && id !== undefined) {
       this.title = 'Editando Moneda';
-      this.currenciesService.getCurrency(id).subscribe(
-        res => {
-          this.currencyForm.patchValue({
-            id: res.id,
-            name: res.name,
-          });
-          this.currencySeleccionado = res;
-          // console.log(this.currencySeleccionado);
-        }
-      );
+      this.currenciesService.getCurrency(id).subscribe((res) => {
+        this.currencyForm.patchValue({
+          id: res.id,
+          name: res.name,
+        });
+        this.currencySeleccionado = res;
+        // console.log(this.currencySeleccionado);
+      });
     } else {
       this.title = 'Creando Moneda';
     }
-
   }
 
-  updateBlog(){
+  updateBlog() {
+    const { name } = this.currencyForm.value;
 
-    const {name } = this.currencyForm.value;
-
-    if(this.currencySeleccionado){
+    if (this.currencySeleccionado) {
       //actualizar
       const data = {
         ...this.currencyForm.value,
-        id: this.currencySeleccionado.id
-      }
-      this.currenciesService.updateCurrency(data).subscribe(
-        resp =>{
-          Swal.fire('Actualizado', `${name}  actualizado correctamente`, 'success');
-          this.router.navigateByUrl(`/dashboard/currencies`);
-          console.log(this.currencySeleccionado);
+        id: this.currencySeleccionado.id,
+      };
+      this.currenciesService.updateCurrency(data).subscribe((resp) => {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'actualizado correctamente',
+          showConfirmButton: false,
+          timer: 1500,
         });
-
-    }else{
-      //crear
-      this.currenciesService.createCurrency(this.currencyForm.value)
-      .subscribe( (resp: any) =>{
-        Swal.fire('Creado', `${name} creado correctamente`, 'success');
         this.router.navigateByUrl(`/dashboard/currencies`);
-        // this.enviarNotificacion();
-      })
+        // console.log(this.currencySeleccionado);
+      });
+    } else {
+      //crear
+      this.currenciesService
+        .createCurrency(this.currencyForm.value)
+        .subscribe((resp: any) => {
+          // Swal.fire('Creado', `${name} creado correctamente`, 'success');
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'creado correctamente',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          this.router.navigateByUrl(`/dashboard/currencies`);
+          // this.enviarNotificacion();
+        });
     }
-
   }
 
   // enviarNotificacion(): void {
@@ -121,5 +123,4 @@ export class CurrenciesEditComponent implements OnInit {
   goBack() {
     this.location.back(); // <-- go back to previous location on cancel
   }
-
 }

@@ -18,6 +18,7 @@ import { PlanesService } from 'src/app/services/planes.service';
 
 import { environment } from 'src/environments/environment';
 import { AccountService } from 'src/app/services/account.service';
+import Swal from 'sweetalert2';
 
 interface HtmlInputEvent extends Event{
   target : HTMLInputElement & EventTarget;
@@ -221,6 +222,13 @@ export class ReportarPagoComponent implements OnInit {
     }
     this.paymentService.create(data)
     .subscribe( (resp: any) =>{
+      Swal.fire({
+                  position: 'top-end',
+                  icon: 'success',
+                  title: 'creado correctamente',
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
       this.router.navigateByUrl(`/dashboard/historial-pagos`);
       this.pagoSeleccionado = resp;
       // console.log(this.pagoSeleccionado);

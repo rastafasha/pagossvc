@@ -92,7 +92,14 @@ export class PaymentEditComponent implements OnInit {
       }
       this.paymentsService.update(data).subscribe(
         resp =>{
-          Swal.fire('Actualizado', ` actualizado correctamente`, 'success');
+          // Swal.fire('Actualizado', ` actualizado correctamente`, 'success');
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'actualizado correctamente',
+            showConfirmButton: false,
+            timer: 1500,
+          });
           // console.log(this.paymentSeleccionado);
           this.router.navigateByUrl(`/dashboard/payments`);
         });
