@@ -1,0 +1,95 @@
+<!-- =======| Main |======= -->
+<div class="container animated fadeInUp" id="main" class="main" role="main" name="users">
+
+    <div class="col-xs-12">
+        <div class="leftside">
+            <!-- Page Title -->
+            <div class="pagetitle">
+                <h1><i class="bx bxs-user-account"></i> {{title}}</h1>
+                <nav>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a routerLink="/"><i class="fa fa-home"></i> Inicio</a></li>
+                        <li class="breadcrumb-item"><a routerLink="/dashboard/configuraciones">Configuraciones</a></li>
+                        <li class="breadcrumb-item active">{{title}}</li>
+                    </ol>
+                </nav>
+            </div>
+            <!-- End Page Title -->
+        </div>
+        <div class="buton">
+            <button class="btn btn-outline-danger pull-right" href="javascript:void(0)" (click)="goBack()">Volver</button>
+        </div>
+        <div class="clear"></div>
+
+
+
+        <section class="section dashboard">
+
+
+            <!-- Recent Pagos -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-11 col-sm-11">
+                        <!-- buscador -->
+                        <!-- <app-search></app-search> -->
+                        <!-- buscador -->
+                    </div>
+                    <div class="col-xs-1 col-sm-1">
+                        <div class="text-right">
+                            <button class="btn btn-primary" [routerLink]="['/dashboard/paymentmethod/create/']">
+                <i class="fa fa-pencil"></i>
+                Crear
+              </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card recent-sales overflow-auto">
+
+
+                    <div class="card-body">
+
+
+                        <table [ngClass]="loading? 'table table-borderless datatable':'table table-borderless'">
+                            <thead>
+                                <tr>
+
+                                    <th>Tipo</th>
+                                    <th>Banco</th>
+                                    <th>status</th>
+                                    <th>Creado</th>
+                                    <th>Actualizado</th>
+                                    <th class="text-nowrap">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let paymentm of tiposdepagos">
+                                    <td>{{paymentm.type}}</td>
+                                    <td>{{paymentm.bankName}}</td>
+                                    <td>{{paymentm.status}}</td>
+                                    <td>{{paymentm.created_at | date: 'dd/MM/YYYY'}} </td>
+                                    <td>{{paymentm.updated_at | date: 'dd/MM/YYYY'}} </td>
+                                    <td class="text-nowrap text-center">
+                                        <a [routerLink]="['/dashboard/paymentmethod/edit', paymentm.id]" class="cursor" data-toggle="tooltip" data-original-title="Edit">
+                                            <i class="fa fa-edit text-success" style="font-size: 18px;"></i>
+                                        </a>
+                                        <a (click)="eliminarPaymentmethod(paymentm.id)" class="cursor" data-toggle="tooltip" data-original-title="Borrar">
+                                            <i class="fa fa-trash text-danger" style="font-size: 18px; margin-left: 10px; margin-right: 10px;"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+
+                        </table>
+
+
+                    </div>
+
+                </div>
+            </div>
+            <!-- End Recent Pagos -->
+
+        </section>
+
+    </div>
+</div>
+<!--/main-->

@@ -62,6 +62,7 @@ export class ReportarPagoComponent implements OnInit {
   paymentSeleccionado:Payment;
 
   user:User;
+  cart:any;
   planes: Plan;
 
   public storage = environment.apiUrlMedia
@@ -132,6 +133,8 @@ export class ReportarPagoComponent implements OnInit {
 
   getUser(): void {
     this.usuario = JSON.parse(localStorage.getItem('user'));
+    this.cart = JSON.parse(localStorage.getItem('cart'));
+    // console.log(this.cart);
   }
 
 
@@ -141,6 +144,10 @@ export class ReportarPagoComponent implements OnInit {
       total += item.quantity * item.productPrice;
     });
     return +total.toFixed(2);
+  }
+
+  selectedTypeCoupon(value:any){
+    this.metodo = value;
   }
 
 
@@ -174,12 +181,13 @@ export class ReportarPagoComponent implements OnInit {
       id: [''],
       metodo: ['',Validators.required],
       bank_name: [''],
-      monto: ['',Validators.required],
       currency_id: [''],
       referencia: [''],
       email: [''],
       nombre: [''],
-      plan_id: [''],
+      monto: [this.cart[0].productPrice,Validators.required],
+      plan_id: [this.cart[0].productId],
+      telefono: [''],
       status: ['PENDING'],
       validacion: ['PENDING'],
       user_id: [''],
@@ -199,17 +207,19 @@ export class ReportarPagoComponent implements OnInit {
   }
 
 
-  updateForm(){
+  updateForm(){debugger
 
     const formData = new FormData();
     formData.append('metodo', this.PaymentRegisterForm.get('metodo').value);
     formData.append('bank_name', this.PaymentRegisterForm.get('bank_name').value);
-    formData.append('monto', this.PaymentRegisterForm.get('monto').value);
     formData.append('currency_id', this.PaymentRegisterForm.get('currency_id').value);
     formData.append('referencia', this.PaymentRegisterForm.get('referencia').value);
     formData.append('nombre', this.PaymentRegisterForm.get('nombre').value);
     formData.append('email', this.PaymentRegisterForm.get('email').value);
-    formData.append('plan_id', this.PaymentRegisterForm.get('plan_id').value);
+    formData.append('monto', this.cart[0].productPrice);
+    formData.append('plan_id', this.cart[0].productId);
+    // formData.append('plan_id', this.PaymentRegisterForm.get('plan_id').value);
+    formData.append('telefono', this.PaymentRegisterForm.get('telefono').value);
     formData.append('status', 'PENDING');
     formData.append('validacion', 'PENDING');
     formData.append('image', this.PaymentRegisterForm.get('image').value);

@@ -26,6 +26,7 @@
         "angular-file-uploader": "^5.0.2",
         "angular2-qrcode": "^2.0.3",
         "bootstrap": "^4.5.0",
+        "ckeditor4-angular": "^5.1.0",
         "dolartoday": "^1.0.2",
         "jquery": "^3.6.1",
         "ngx-pagination": "^6.0.2",

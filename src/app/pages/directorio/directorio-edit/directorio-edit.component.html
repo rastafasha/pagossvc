@@ -55,6 +55,7 @@
                                           <option value="">Seleccione</option>
                                           <option value="Cirugía Buco-maxilofacial">Cirugía Buco-maxilofacial</option>
                                           <option value="Cirugía Maxilofacial">Cirugía Maxilofacial</option>
+                                          <option value="Cirugía Bucal">Cirugía Bucal</option>
                                         </select>
                                         </div>
                                         <div class=" col-md-6">
@@ -112,17 +113,19 @@
                                         <div class="col-md-12">
                                             <label>Dirección <span class="required">*</span></label>
                                             <div class="col-md-12">
-                                                <textarea formControlName="direccion" cols="30" rows="4" class="form-control"></textarea>
+                                                <textarea class="form-control"  name="direccion1" formControlName="direccion" rows="3" cols="30"></textarea>
                                                 <!-- <ckeditor [editor]="Editor" id="direccion" (ready)="onReady($event)" data="<p>Hello, world!</p>" formControlName="direccion" value="direccion" rows="5" class="form-control" required></ckeditor> -->
-
+                                                <!-- <ckeditor formControlName="direccion" data="<p>Hello, world!</p>"></ckeditor> -->
+                                                
                                             </div>
                                         </div>
                                         <div class="col-md-12">
 
                                             <label>Dirección Adicional (Opcional)</label>
-                                            <textarea formControlName="direccion1" cols="30" rows="4" class="form-control"></textarea>
-                                            <!-- <ckeditor [editor]="Editor1" id="direccion1" (ready)="onReady($event)" data="<p>Hello, world!</p>" formControlName="direccion1" value="direccion1" rows="5" class="form-control"></ckeditor> -->
-
+                                            <textarea class="form-control"  name="direccion1" formControlName="direccion1" rows="3" cols="30"></textarea>
+                                            <!-- <ckeditor id="direccion1"  data="<p>Hello, world!</p>" formControlName="direccion1" value="direccion1" rows="5" class="form-control"></ckeditor> -->
+                                            <!-- <ckeditor formControlName="direccion1" data="<p>Hello, world!</p>"></ckeditor> -->
+                                                
                                         </div>
                                         <div class="clear"></div>
                                         <br>

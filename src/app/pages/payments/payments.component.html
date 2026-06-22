@@ -51,22 +51,25 @@
                                 <tr>
                                     <th scope="col">Referencia</th>
                                     <th scope="col">Usuario</th>
+                                    <th scope="col">Correo</th>
+                                    <th scope="col">telefono</th>
                                     <th scope="col">Metodo </th>
                                     <th scope="col">Monto</th>
-                                    <th scope="col">Moneda</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Validación</th>
                                     <th scope="col">Fecha | Hora</th>
-                                    <th scope="col">Acciones</th>
+                                    <!-- <th scope="col">Acciones</th> -->
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr *ngFor="let pago of payments |  paginate: { itemsPerPage: count, currentPage: p }">
                                     <th scope="row"><a [routerLink]="['/dashboard/payment-detail', pago.id]">{{pago.referencia}}</a></th>
                                     <th><a [routerLink]="['/dashboard/user/', pago.user_id]">{{pago.user_id}}</a></th>
+                                    <td>{{pago.email}}</td>
+                                    <td>{{pago.telefono}}</td>
                                     <td>{{pago.metodo}}</td>
                                     <td>{{pago.monto}}</td>
-                                    <td>{{pago.currencies[0].name}}</td>
+                                    <!-- <td>{{pago.currencies[0].name}}</td> -->
 
                                     <td>
                                         <span class="badge bg-success" *ngIf="pago.status === 'APPROVED'">Aprobado</span>
@@ -75,22 +78,22 @@
                                         <!-- <span class="badge bg-success">{{pago.status}}</span> -->
                                     </td>
                                     <td>
-                                        <span class="badge bg-success" *ngIf="pago.validacion === 'APPROVED'">Aprobado</span>
+                                        <span class="badge bg-success" *ngIf="pago.validacion === 'APROVED'">Aprobado</span>
                                         <span class="badge bg-primary" *ngIf="pago.validacion === 'PENDING'">Pendiente</span>
                                         <span class="badge bg-danger" *ngIf="pago.validacion === 'REJECTED'">Rechazado</span>
                                         <!-- <span class="badge bg-success">{{pago.status}}</span> -->
                                     </td>
                                     <td>{{pago.created_at | date:'MMM d, y, h:mm:ss a'}}</td>
-                                    <td>
+                                    <!-- <td>
                                         <div class="form-check form-switch" title="Verificar">
-                                            <!-- <a data-toggle="modal" [attr.data-target]="'#' + pago.id"> -->
+                                            <a data-toggle="modal" [attr.data-target]="'#' + pago.id">
                                             <a [routerLink]="['/dashboard/payment/edit/', pago.id]">
                                                 <button class="btn btn-success">Editar</button>
                                             </a>
 
                                         </div>
 
-                                    </td>
+                                    </td> -->
                                 </tr>
 
 

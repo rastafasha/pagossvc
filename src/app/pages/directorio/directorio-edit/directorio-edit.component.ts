@@ -9,7 +9,6 @@ import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
 import { AccountService } from 'src/app/services/account.service';
 import { environment } from 'src/environments/environment';
-
 interface HtmlInputEvent extends Event{
   target : HTMLInputElement & EventTarget;
 }
@@ -24,6 +23,7 @@ export class DirectorioEditComponent implements OnInit {
   directorioForm: FormGroup;
   directory: Directorio;
   infoDirectorio: Directorio;
+
 
   public user: User;
   userprofile!: User;

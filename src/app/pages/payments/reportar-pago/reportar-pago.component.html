@@ -68,7 +68,9 @@
                                 <li>Pegar el <b>Número de referencia</b> en el campo correspondido </li>
                                 <li>Adjuntar la foto del pago </li>
                                 <li>Le indicaremos el cambio de status. </li>
-                                <li>Si es en efectivo, colocar en el banco efectivo <br> y en referencia el (los) número del (los) billete</li>
+                                <li>Si es en efectivo, colocar en referencia el (los) número del (los) billete <br>
+                                    y tomar fotos todos a la vez
+                                </li>
                             </ol>
                         </div>
 
@@ -125,105 +127,296 @@
                                             <div class="form-group ">
                                                 <label for="">Tipo De pago </label>
 
-                                                <div class="form-check">
+                                                <!-- <div class="form-check">
                                                     <input class="form-check-input" formControlName="metodo" (click)="verpaypal()" type="radio" value="Paypal" id="radiotipo1">
                                                     <label class="form-check-label" for="radiotipo1">Paypal</label>
+                                                </div> -->
+                                                <div class="form-check">
+                                                    <input class="form-check-input" formControlName="metodo" type="radio" value="Transferencia Internacional" [checked]="metodo == 'Transferencia Internacional'" (click)="selectedTypeCoupon('Transferencia Internacional')"  id="radiotipo2">
+                                                    <label class="form-check-label" for="radiotipo2">Transferencia Internacional</label>
                                                 </div>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" formControlName="metodo" (click)="hidepaypal()" type="radio" value="Zelle" id="radiotipo2">
-                                                    <label class="form-check-label" for="radiotipo2">Zelle</label>
+                                                    <input class="form-check-input" formControlName="metodo" [checked]="metodo == 'Transferencia Nacional'" (click)="selectedTypeCoupon('Transferencia Nacional')" type="radio" value="Transferencia Nacional" id="radiotipo3">
+                                                    <label class="form-check-label" for="radiotipo3">Transferencia Nacional</label>
                                                 </div>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" formControlName="metodo" (click)="hidepaypal()" type="radio" value="Transferencia" id="radiotipo3">
-                                                    <label class="form-check-label" for="radiotipo3">Transferencia</label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" formControlName="metodo" (click)="hidepaypal()" type="radio" value="Pago Movil" id="radiotipo4">
+                                                    <input class="form-check-input" formControlName="metodo" [checked]="metodo == 'Pago Movil'" (click)="selectedTypeCoupon('Pago Movil')" type="radio" value="Pago Movil" id="radiotipo4">
                                                     <label class="form-check-label" for="radiotipo4">Pago Movil</label>
                                                 </div>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" formControlName="metodo" (click)="hidepaypal()" type="radio" value="Efectivo" id="radiotipo5">
+                                                    <input class="form-check-input" formControlName="metodo" [checked]="metodo == 'Efectivo'" (click)="selectedTypeCoupon('Efectivo')" type="radio" value="Efectivo" id="radiotipo5">
                                                     <label class="form-check-label" for="radiotipo5">Efectivo</label>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="div2">
-                                            <div class="form-group ">
-                                                <label for="">Nombre Banco </label>
-                                                <input type="text" formControlName="bank_name" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="div3">
-                                            <div class="form-group ">
-                                                <label for="">Num. referencia </label>
-                                                <input type="text" formControlName="referencia" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="div4">
-                                            <div class="form-group " *ngIf="!total">
-                                                <label for="">Monto</label>
-                                                <input type="text" formControlName="monto" class="form-control">
-                                            </div>
-                                            <div class="form-group " *ngIf="total">
-                                                <label for="">Monto</label>
-                                                <p>{{total}}</p>
-                                                <input type="text" formControlName="monto" class="form-control" placeholder="ejemplo 80.00 ">
-                                            </div>
-                                        </div>
-                                        <div class="div5">
-                                            <div class="form-group ">
-                                                <label for="">Plan</label>
 
-                                                <select class="form-control " formControlName="plan_id" required>
-                                          <option disabled  value="">SELECCIONAR</option>
-                                          <option *ngFor="let item of planes" [value]="item.id">{{item.name}} | {{item.price}} </option>
+                                        <div class="row" *ngIf="metodo == 'Transferencia Internacional' || metodo == 'Transferencia Nacional'">
+                                            <div class="col-xs-12 col-sm-8">
+                                                <div class="div2">
+                                                    <div class="form-group ">
+                                                        <label for="">Nombre Banco </label>
+                                                        <input type="text" formControlName="bank_name" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="div3">
+                                                    <div class="form-group ">
+                                                        <label for="">Num. referencia </label>
+                                                        <input type="text" formControlName="referencia" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="div4">
+                                                    <div class="form-group " *ngIf="!total">
+                                                        <label for="">Monto</label>
+                                                        <input type="text" formControlName="monto" class="form-control">
+                                                    </div>
+                                                    <div class="form-group " *ngIf="total">
+                                                        <label for="">Monto</label>
+                                                        <p>{{total|currency}}</p>
+                                                        <!-- <input type="text" formControlName="monto" class="form-control" placeholder="ejemplo 80.00 "> -->
+                                                    </div>
+                                                </div>
+                                                <div class="div5">
+                                                    <div class="form-group " *ngIf="total">
+                                                        <label for="">Plan</label>
+                                                        <p>{{cart[0].productName}}</p>
+                                                    </div>
+                                                    <div class="form-group " *ngIf="!total">
+                                                        <label for="">Plan</label>
+        
+                                                        <select class="form-control " formControlName="plan_id" required>
+                                                  <option disabled  value="">SELECCIONAR</option>
+                                                  <option *ngFor="let item of planes" [value]="item.id">{{item.name}} | {{item.price}} </option>
+        
+                                              </select>
+                                                    </div>
+                                                </div>
+                                                <div class="div6">
+                                                    <div class="form-group ">
+                                                        <label for="">Moneda</label>
+        
+                                                        <select class="form-control " formControlName="currency_id" required>
+                                                    <option disabled  value="">SELECCIONAR</option>
+                                                    <option *ngFor="let item of currenciesAll" [value]="item.id">{{item.name}}</option>
+        
+                                                </select>
+                                                    </div>
+                                                </div>
+                                                <div class="div7">
+                                                    <div class="form-group ">
+                                                        <label for="">Nombre y Apellido(en cuenta pagadora) </label>
+                                                        <input type="text" formControlName="nombre" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="div8">
+                                                    <div class="form-group ">
+                                                        <label for="">Email (en cuenta pagadora)</label>
+                                                        <input type="text" formControlName="email" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-4">
+                                                <div class="imagenypaypal">
+                                                    <div class="form-group form-row">
+                
+                                                        <p>Imagen del pago (requerido) <br> (peso max: 500kb )</p>
+                                                        <div class="col-xs-12">
+                                                            <angular-file-uploader [config]="afuConfig " (ApiResponse)="avatarUpload($event) ">
+                                                            </angular-file-uploader>
+                
+                                                        </div>
+                                                    </div>
+                                                   
+                                                </div>
 
-                                      </select>
                                             </div>
-                                        </div>
-                                        <div class="div6">
-                                            <div class="form-group ">
-                                                <label for="">Moneda</label>
+                                            
 
-                                                <select class="form-control " formControlName="currency_id" required>
-                                            <option disabled  value="">SELECCIONAR</option>
-                                            <option *ngFor="let item of currenciesAll" [value]="item.id">{{item.name}}</option>
+                                            
+        
+                                        </div>
 
-                                        </select>
+                                        <div class="row" *ngIf="metodo == 'Pago Movil' ">
+                                            <div class="col-xs-12 col-sm-8">
+                                                <div class="div2">
+                                                    <div class="form-group ">
+                                                        <label for="">Nombre Banco </label>
+                                                        <input type="text" formControlName="bank_name" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="div3">
+                                                    <div class="form-group ">
+                                                        <label for="">Num. referencia </label>
+                                                        <input type="text" formControlName="referencia" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="div4">
+                                                    <div class="form-group " *ngIf="!total">
+                                                        <label for="">Monto</label>
+                                                        <input type="text" formControlName="monto" class="form-control">
+                                                    </div>
+                                                    <div class="form-group " *ngIf="total">
+                                                        <label for="">Monto</label>
+                                                        <p>{{total|currency}}</p>
+                                                        <!-- <input type="text" formControlName="monto" class="form-control" placeholder="ejemplo 80.00 "> -->
+                                                    </div>
+                                                </div>
+                                                <div class="div5">
+                                                    <div class="form-group " *ngIf="total">
+                                                        <label for="">Plan</label>
+                                                        <p>{{cart[0].productName}}</p>
+                                                    </div>
+                                                    <div class="form-group " *ngIf="!total">
+                                                        <label for="">Plan</label>
+        
+                                                        <select class="form-control " formControlName="plan_id" required>
+                                                  <option disabled  value="">SELECCIONAR</option>
+                                                  <option *ngFor="let item of planes" [value]="item.id">{{item.name}} | {{item.price}} </option>
+        
+                                              </select>
+                                                    </div>
+                                                </div>
+                                                <div class="div6">
+                                                    <div class="form-group ">
+                                                        <label for="">Moneda</label>
+        
+                                                        <select class="form-control " formControlName="currency_id" required>
+                                                    <option disabled  value="">SELECCIONAR</option>
+                                                    <option *ngFor="let item of currenciesAll" [value]="item.id">{{item.name}}</option>
+        
+                                                </select>
+                                                    </div>
+                                                </div>
+                                                <div class="div7">
+                                                    <div class="form-group ">
+                                                        <label for="">Telefono </label>
+                                                        <input type="text" formControlName="telefono" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="div7">
+                                                    <div class="form-group ">
+                                                        <label for="">Nombre y Apellido(en cuenta pagadora) </label>
+                                                        <input type="text" formControlName="nombre" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="div8">
+                                                    <div class="form-group ">
+                                                        <label for="">Email</label>
+                                                        <input type="text" formControlName="email" class="form-control">
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="div7">
-                                            <div class="form-group ">
-                                                <label for="">Nombre y Apellido(en cuenta pagadora) </label>
-                                                <input type="text" formControlName="nombre" class="form-control">
+                                            <div class="col-xs-12 col-sm-4">
+                                                <div class="imagenypaypal">
+                                                    <div class="form-group form-row">
+                
+                                                        <p>Imagen del pago (requerido) <br> (peso max: 500kb )</p>
+                                                        <div class="col-xs-12">
+                                                            <angular-file-uploader [config]="afuConfig " (ApiResponse)="avatarUpload($event) ">
+                                                            </angular-file-uploader>
+                
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div>
+
                                             </div>
+                                            
+
+                                            
+        
                                         </div>
-                                        <div class="div8">
-                                            <div class="form-group ">
-                                                <label for="">Email (en cuenta pagadora)</label>
-                                                <input type="text" formControlName="email" class="form-control">
+
+                                        <div class="row" *ngIf="metodo == 'Efectivo'">
+                                            <div class="col-xs-12 col-sm-8">
+                                                
+                                                <div class="div3">
+                                                    <div class="form-group ">
+                                                        <label for="">Num. referencia </label>
+                                                        <input type="text" formControlName="referencia" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="div4">
+                                                    <div class="form-group " *ngIf="!total">
+                                                        <label for="">Monto</label>
+                                                        <input type="text" formControlName="monto" class="form-control">
+                                                    </div>
+                                                    <div class="form-group " *ngIf="total">
+                                                        <label for="">Monto</label>
+                                                        <p>{{total|currency}}</p>
+                                                        <!-- <input type="text" formControlName="monto" class="form-control" placeholder="ejemplo 80.00 "> -->
+                                                    </div>
+                                                </div>
+                                                <div class="div5">
+                                                    <div class="form-group " *ngIf="total">
+                                                        <label for="">Plan</label>
+                                                        <p>{{cart[0].productName}}</p>
+                                                    </div>
+                                                    <div class="form-group " *ngIf="!total">
+                                                        <label for="">Plan</label>
+        
+                                                        <select class="form-control " formControlName="plan_id" required>
+                                                  <option disabled  value="">SELECCIONAR</option>
+                                                  <option *ngFor="let item of planes" [value]="item.id">{{item.name}} | {{item.price}} </option>
+        
+                                              </select>
+                                                    </div>
+                                                </div>
+                                                <div class="div6">
+                                                    <div class="form-group ">
+                                                        <label for="">Moneda</label>
+        
+                                                        <select class="form-control " formControlName="currency_id" required>
+                                                    <option disabled  value="">SELECCIONAR</option>
+                                                    <option *ngFor="let item of currenciesAll" [value]="item.id">{{item.name}}</option>
+        
+                                                </select>
+                                                    </div>
+                                                </div>
+                                                <div class="div7">
+                                                    <div class="form-group ">
+                                                        <label for="">Nombre y Apellido(en cuenta pagadora) </label>
+                                                        <input type="text" formControlName="nombre" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="div8">
+                                                    <div class="form-group ">
+                                                        <label for="">Email (en cuenta pagadora)</label>
+                                                        <input type="text" formControlName="email" class="form-control">
+                                                    </div>
+                                                </div>
                                             </div>
+                                            <div class="col-xs-12 col-sm-4">
+                                                <div class="imagenypaypal">
+                                                    <div class="form-group form-row">
+                
+                                                        <p>Imagen del pago (requerido) <br> (peso max: 500kb )</p>
+                                                        <div class="col-xs-12">
+                                                            <angular-file-uploader [config]="afuConfig " (ApiResponse)="avatarUpload($event) ">
+                                                            </angular-file-uploader>
+                
+                                                        </div>
+                                                    </div>
+                                                   
+                                                </div>
+
+                                            </div>
+                                            
+
+                                            
+        
                                         </div>
+
+                                        <!-- <div class="vibiblepayp">
+                                            <a routerLink="/dashboard/planes/all">
+                                                <div class="button btn btn-outline-success">Pagar por Paypal</div>
+                                            </a>
+                                        </div> -->
+                                        
+    
                                     </div>
-
-
-                                </div>
-                                <div class="col-xs-12 col-md-4 imagenypaypal">
-                                    <div class="form-group form-row">
-
-                                        <p>Imagen del pago (requerido) <br> (peso max: 500kb )</p>
-                                        <div class="col-xs-12">
-                                            <angular-file-uploader [config]="afuConfig " (ApiResponse)="avatarUpload($event) ">
-                                            </angular-file-uploader>
-
+                                    
                                         </div>
-                                    </div>
-                                    <div class="vibiblepayp">
-                                        <a routerLink="/dashboard/planes/all">
-                                            <div class="button btn btn-outline-success">Pagar por Paypal</div>
-                                        </a>
-                                    </div>
-                                </div>
+                                        
 
 
 

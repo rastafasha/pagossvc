@@ -24,6 +24,8 @@ export class UserProfileComponent implements OnInit {
   directories: Directorio;
   directory: Directorio;
   payments: Payment;
+  userpayment: Payment;
+  userdirectories: Directorio;
   id:number;
 
   rolesSelected:number;
@@ -66,8 +68,12 @@ export class UserProfileComponent implements OnInit {
     this.userService.getUserById(+id).subscribe(
       res =>{
         this.userprofile = res[0];
+        this.userpayment = res[0].payments;
+        this.userdirectories = res[0].directories;
         error => this.error = error
-        // console.log(this.userprofile);
+        console.log(this.userprofile);
+        console.log(this.userpayment);
+        console.log(this.userdirectories);
       }
     );
   }

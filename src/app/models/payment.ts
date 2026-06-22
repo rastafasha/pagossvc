@@ -13,6 +13,7 @@ export class Payment {
    currency_id?:Currencies;
    currencies:Currencies;
    referencia?:string;
+   telefono?:string;
    image?:string;
 
    fecha?:Date;

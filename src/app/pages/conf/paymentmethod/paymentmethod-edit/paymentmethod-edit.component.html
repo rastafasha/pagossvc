@@ -1,0 +1,73 @@
+<!-- =======| Main |======= -->
+<div class="container animated fadeInUp" id="main" class="main" role="main" name="users">
+
+    <div class="col-xs-12">
+        <div class="leftside">
+            <!-- Page Title -->
+            <div class="pagetitle">
+                <h1><i class="bx bxs-user-account"></i> {{title}}</h1>
+                <nav>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a routerLink="/"><i class="bi bi-house"></i> Inicio</a></li>
+                        <li class="breadcrumb-item"><a routerLink="/dashboard/configuraciones">Configuraciones</a></li>
+                        <li class="breadcrumb-item active">{{title}}</li>
+                    </ol>
+                </nav>
+            </div>
+            <!-- End Page Title -->
+        </div>
+        <div class="buton">
+            <button class="btn btn-outline-danger pull-right" href="javascript:void(0)" (click)="goBack()">Volver</button>
+        </div>
+        <div class="clear"></div>
+
+
+
+        <section class="section dashboard">
+            <form enctype="multipart/form-data" [formGroup]="paymentmethodForm" (ngSubmit)="updatePaymentmethod()">
+                <div class="row">
+                    <div class="form-group col-xs-12 col-sm-6">
+                        <label for="exampleInputEmail1">Nombre</label>
+                        <input formControlName="name" type="text" class="form-control">
+                    </div>
+                    <div class="clear"></div>
+                    <div class="col-xs-12 col-sm-6">
+
+                        <div class="form-group form-row">
+                            <label class="col-12">Status</label>
+                            <div class="col-md-9">
+                                <input type="radio" formControlName="status" value="ACTIVE" /> ACTIVE
+                                <input type="radio" formControlName="status" value="INACTIVE" /> INACTIVE
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">bankAccount</label>
+                            <input formControlName="bankAccount" type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">bankAccountType</label>
+                            <input formControlName="bankAccountType" type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">bankName</label>
+                            <input formControlName="bankName" type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">type</label>
+                            <input formControlName="type" type="text" class="form-control">
+                        </div>
+                    </div>
+
+                    <input type="hidden" formControlName="id">
+                    <div class="clear"></div>
+                    <div class="text-center col-xs-12" style="display: flex; justify-content: center;">
+                        <button (click)="updatePaymentmethod()" class="btn btn-primary col-xs-12 col-sm-6">Submit</button>
+                    </div>
+                </div>
+            </form>
+
+        </section>
+
+    </div>
+</div>
+<!--/main-->

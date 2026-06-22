@@ -27,11 +27,11 @@
                     <div class="card">
                         <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-                            <div *ngIf="!directory">
-                                <img [src]="userprofile.directories[0].image | imagenPipe: 'directories'" class="rounded-circle">
+                            <div *ngIf="!userdirectories">
+                                <img [src]="userdirectories.image | imagenPipe: 'directories'" class="rounded-circle">
                             </div>
-                            <div *ngIf="directory">
-                                <img [src]="userprofile.directories[0].image | imagenPipe: 'directories'" [alt]="user.username" class="rounded-circle">
+                            <div *ngIf="userdirectories">
+                                <img [src]="userdirectories.image | imagenPipe: 'directories'" [alt]="userprofile.username" class="rounded-circle">
                             </div>
 
                             <h3>{{userprofile.username}}</h3>
@@ -71,7 +71,7 @@
                             <div class="tab-content pt-2">
 
                                 <div class="tab-pane fade show active historial" id="historial">
-                                    <ul *ngFor="let payment of userprofile.payments |  paginate: { itemsPerPage: count, currentPage: p }">
+                                    <ul *ngFor="let payment of userpayment |  paginate: { itemsPerPage: count, currentPage: p }">
                                         <li><a [routerLink]="['/dashboard/payment-detail', payment.id]">
                                         Referencia: {{payment.referencia}} | Status:
                                         <span class="badge bg-success" *ngIf="payment.status === 'APPROVED'">Aprobado</span>
@@ -90,25 +90,25 @@
                                 <div class="tab-pane fade detail  pt-3" id="detalle">
 
 
-                                    <div *ngIf="!userprofile.directories[0]">
+                                    <div *ngIf="!userdirectories">
                                         <p>No posee directorio</p>
                                     </div>
                                     <div class="col-xs-12">
-                                        <div *ngIf="userprofile.directories[0]">
+                                        <div *ngIf="userdirectories">
                                             <div class="row">
                                                 <div class="col-xs-6 col-sm-6 col-md-4 b-r">
                                                     <div class="col-12  label"><i class="bi bi-person-circle"></i> Nombre</div>
-                                                    <div class="col-12  info">{{userprofile.directories[0].nombre}}</div>
+                                                    <div class="col-12  info">{{userdirectories.nombre}}</div>
                                                 </div>
                                                 <div class="col-xs-6 col-sm-6 col-md-4 b-r">
                                                     <div class="col-12  label"><i class="bi bi-person-circle"></i> Apellido</div>
-                                                    <div class="col-12  info">{{userprofile.directories[0].surname}}</div>
+                                                    <div class="col-12  info">{{userdirectories.surname}}</div>
                                                 </div>
 
 
                                                 <div class="col-xs-6 col-sm-6 col-md-4 b-r">
                                                     <div class="col-12  label"><i class="bi  bi-award"></i> Especialidad</div>
-                                                    <div class="col-12 info">{{userprofile.directories[0].especialidad}} </div>
+                                                    <div class="col-12 info">{{userdirectories.especialidad}} </div>
                                                 </div>
                                             </div>
                                             <hr>
@@ -116,18 +116,18 @@
                                             <div class="row">
                                                 <div class="col-xs-6 col-sm-6 col-md-4 b-r">
                                                     <div class="col-12  label"><i class="bi bi-bank2"></i> Universidad</div>
-                                                    <div class="col-12  info">{{userprofile.directories[0].universidad}}</div>
+                                                    <div class="col-12  info">{{userdirectories.universidad}}</div>
                                                 </div>
                                                 <div class="col-xs-6 col-sm-6 col-md-4 b-r">
                                                     <div class="col-12  label"><i class="bi  bi-award"></i> Año</div>
-                                                    <div class="col-12  info">{{userprofile.directories[0].ano}}</div>
+                                                    <div class="col-12  info">{{userdirectories.ano}}</div>
                                                 </div>
                                                 <div class="col-xs-6 col-sm-6 col-md-4 b-r">
                                                     <div class="col-12  label"><i class="bi bi-geo"></i> Website</div>
                                                     <div class="col-12  info">
-                                                        <a href="{{userprofile.directories[0].website}}" target="_blank">
+                                                        <a href="{{userdirectories.website}}" target="_blank">
 
-                                                  {{userprofile.directories[0].website}}
+                                                  {{userdirectories.website}}
                                                 </a>
                                                     </div>
                                                 </div>
@@ -138,8 +138,8 @@
                                                 <div class="col-xs-6 col-sm-6 col-md-3 b-r">
                                                     <div class="col-12  label"><i class="bi bi-telephone"></i> Principal</div>
                                                     <div class="col-12  info">
-                                                        <a href="tel:{{userprofile.directories[0].telprincipal}}" target="_blank">
-                                                {{userprofile.directories[0].telprincipal}}
+                                                        <a href="tel:{{userdirectories.telprincipal}}" target="_blank">
+                                                {{userdirectories.telprincipal}}
                                                 </a>
                                                     </div>
                                                 </div>
@@ -147,24 +147,24 @@
                                                     <div class="col-12  label"><i class="bi bi-telephone"></i> Móvil</div>
 
                                                     <div class="col-12  info">
-                                                        <a href="tel:{{userprofile.directories[0].telmovil}}" target="_blank">
-                                                  {{userprofile.directories[0].telmovil}}
+                                                        <a href="tel:{{userdirectories.telmovil}}" target="_blank">
+                                                  {{userdirectories.telmovil}}
                                                 </a>
                                                     </div>
                                                 </div>
                                                 <div class="col-xs-6 col-sm-6 col-md-3 b-r">
                                                     <div class="col-12  label"><i class="bi bi-telephone"></i> Oficina</div>
                                                     <div class="col-12  info">
-                                                        <a href="tel:{{userprofile.directories[0].telhome}}" target="_blank">
-                                                  {{userprofile.directories[0].telhome}}
+                                                        <a href="tel:{{userdirectories.telhome}}" target="_blank">
+                                                  {{userdirectories.telhome}}
                                                 </a>
                                                     </div>
                                                 </div>
                                                 <div class="col-xs-6 col-sm-6 col-md-3 b-r">
                                                     <div class="col-12  label"><i class="bi bi-telephone"></i> Adicional</div>
                                                     <div class="col-12  info">
-                                                        <a href="tel:{{userprofile.directories[0].tel1}}" target="_blank">
-                                                  {{userprofile.directories[0].tel1}}
+                                                        <a href="tel:{{userdirectories.tel1}}" target="_blank">
+                                                  {{userdirectories.tel1}}
                                                 </a>
                                                     </div>
                                                 </div>
@@ -173,23 +173,23 @@
                                             <div class="row">
                                                 <div class="col-xs-12 col-sm-6 col-md-3 b-r">
                                                     <div class="col-12  label"><i class="bi bi-telephone"></i> Otros</div>
-                                                    <div class="col-12 info">{{userprofile.directories[0].telefonos}}</div>
+                                                    <div class="col-12 info">{{userdirectories.telefonos}}</div>
                                                 </div>
                                                 <div class="col-xs-6 col-sm-6 col-md-3 b-r">
                                                     <div class="col-12  label"><i class="bi bi-geo"></i> Estado</div>
-                                                    <div class="col-12  info">{{userprofile.directories[0].estado}}</div>
+                                                    <div class="col-12  info">{{userdirectories.estado}}</div>
                                                 </div>
                                                 <div class="col-xs-12 col-sm-6 col-md-3 b-r">
                                                     <div class="col-12  label"><i class="bi bi-file-text"></i> Dirección</div>
                                                     <div class="col-12  info">
-                                                        <p>{{userprofile.directories[0].direccion}}</p>
+                                                        <p>{{userdirectories.direccion}}</p>
 
                                                     </div>
                                                 </div>
                                                 <div class="col-xs-12 col-sm-6 col-md-3 b-r">
                                                     <div class="col-12  label"><i class="bi bi-file-text"></i> Dir. Adicional</div>
                                                     <div class="col-12  info">
-                                                        <p>{{userprofile.directories[0].direccion1}}</p>
+                                                        <p>{{userdirectories.direccion1}}</p>
 
                                                     </div>
                                                 </div>
@@ -198,19 +198,19 @@
                                             <div class="row">
                                                 <div class="col-xs-12 col-sm-6 col-md-3 b-r">
                                                     <div class="col-12  label"><i class="fa fa-facebook"></i> Facebook</div>
-                                                    <div class="col-12 info">{{userprofile.directories[0].facebook}}</div>
+                                                    <div class="col-12 info">{{userdirectories.facebook}}</div>
                                                 </div>
                                                 <div class="col-xs-6 col-sm-6 col-md-3 b-r">
                                                     <div class="col-12  label"><i class="fa fa-instagram"></i> Instagram</div>
-                                                    <div class="col-12  info">{{userprofile.directories[0].instagram}}</div>
+                                                    <div class="col-12  info">{{userdirectories.instagram}}</div>
                                                 </div>
                                                 <div class="col-xs-12 col-sm-6 col-md-3 b-r">
                                                     <div class="col-12  label"><i class="fa fa-linkedin"></i> Linkedin</div>
-                                                    <div class="col-12  info">{{userprofile.directories[0].linkedin}}</div>
+                                                    <div class="col-12  info">{{userdirectories.linkedin}}</div>
                                                 </div>
                                                 <div class="col-xs-12 col-sm-6 col-md-3 b-r">
                                                     <div class="col-12  label"><i class="fa fa-twitter"></i> Twitter</div>
-                                                    <div class="col-12  info">{{userprofile.directories[0].twitter}}</div>
+                                                    <div class="col-12  info">{{userdirectories.twitter}}</div>
                                                 </div>
 
                                             </div>
@@ -221,7 +221,7 @@
                                     <hr>
                                     <br>
                                     <div class="imgqr">
-                                        <qr-code class="code" id="box" [value]="userprofile.directories[0].vcard" [size]="250">
+                                        <qr-code class="code" id="box" [value]="userdirectories.vcard" [size]="250">
                                             <img style="margin: auto;">
                                         </qr-code>
                                         <div class="clear"></div>

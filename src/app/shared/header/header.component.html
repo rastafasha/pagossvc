@@ -58,11 +58,11 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle waves-effect waves-dark" href="javascript:void(0)" (click)="openTopMenu()" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
-                        <div *ngIf="!userprofile.directories.image">
+                        <div *ngIf="!userprofile?.directories.image">
                             <img src="./assets/images/no-image.jpg" style="height: 50px; width: 50px;" class="img-circle avatar">
                         </div>
-                        <div *ngIf="userprofile.directories.image">
-                            <img [src]="userprofile.directories[0].image | imagenPipe: 'directories'" style="height: 50px; width: 50px;" class="img-circle avatar">
+                        <div *ngIf="userprofile?.directories.image">
+                            <img [src]="userprofile?.directories[0].image | imagenPipe: 'directories'" style="height: 50px; width: 50px;" class="img-circle avatar">
 
                         </div>
                     </a>

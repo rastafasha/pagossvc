@@ -25,41 +25,85 @@
 
             <div class="card pagodetail">
                 <div class="col-xs-12 col-sm-6">
-                    <p><b>Referencia:</b> {{payment.referencia}}</p>
-                    <p><b>Nombre de la cuenta:</b> {{payment.nombre}}</p>
-                    <p><b>email de la cuenta:</b> {{payment.email}}</p>
-                    <p><b>Fecha | Hora:</b> {{payment.created_at | date:'MMM d, y, h:mm:ss a'}}</p>
+                    <p><b>Referencia:</b> {{paymentuser?.referencia}}</p>
+                    <p><b>Nombre de la cuenta:</b> {{paymentuser?.nombre}}</p>
+                    
+                    <p><b>email de la cuenta:</b> {{paymentuser?.email}}</p>
+                    <p><b>Fecha | Hora:</b> {{paymentuser?.created_at | date:'MMM d, y, h:mm:ss a'}}</p>
                     <p><b>Status:</b>
-                        <span class="badge bg-success" *ngIf="payment.status === 'APPROVED'">Aprobado</span>
-                        <span class="badge bg-primary" *ngIf="payment.status === 'PENDING'">Pendiente</span>
-                        <span class="badge bg-danger" *ngIf="payment.status === 'REJECTED'">Rechazado</span>
+                        <span class="badge bg-success" *ngIf="paymentuser?.status === 'APPROVED'">Aprobado</span>
+                        <span class="badge bg-primary" *ngIf="paymentuser?.status === 'PENDING'">Pendiente</span>
+                        <span class="badge bg-danger" *ngIf="paymentuser?.status === 'REJECTED'">Rechazado</span>
                     </p>
-                    <!-- <p><b>Monto:</b> {{payment.currencies.name}} {{payment.monto}}</p> -->
-                    <p><b>Monto:</b> {{payment.monto}}</p>
+                    <!-- <p><b>Monto:</b> {{paymentuser?.currencies.name}} {{paymentuser?.monto}}</p> -->
+                    <p><b>Monto:</b> {{paymentuser?.monto}}</p>
 
-                    <p><b>ProductoId:</b> <a [routerLink]="['/dashboard/plan/', payment.plan_id]">
-                  {{payment.plan_id}}
+                    <p><b>ProductoId:</b> <a [routerLink]="['/dashboard/plan/', paymentuser?.plan_id]">
+                  {{paymentuser?.plan_id}}
                 </a></p>
                     <!-- <p><b>Email:</b> {{pago.email}}</p> -->
-                    <p><b>Metodo de Pago:</b> {{payment.metodo}}</p>
-                    <div *ngIf="payment.bank_name">
-                        <p><b>Nombre del Banco:</b> {{payment.bank_name}}</p>
+                    <p><b>Metodo de Pago:</b> {{paymentuser?.metodo}}</p>
+                    <div *ngIf="paymentuser?.bank_name">
+                        <p><b>Nombre del Banco:</b> {{paymentuser?.bank_name}}</p>
+                    </div>
+                    <div *ngIf="paymentuser?.telefono">
+                        <p><b>Telefono:</b> {{paymentuser?.telefono}}</p>
                     </div>
                     <p><b>Validación:</b>
-                        <span class="badge bg-success" *ngIf="payment.validacion === 'APPROVED'">Aprobado</span>
-                        <span class="badge bg-primary" *ngIf="payment.validacion === 'PENDING'">Pendiente</span>
-                        <span class="badge bg-danger" *ngIf="payment.validacion === 'REJECTED'">Rechazado</span>
+                        <span class="badge bg-success" *ngIf="paymentuser?.validacion === 'APPROVED'">Aprobado</span>
+                        <span class="badge bg-primary" *ngIf="paymentuser?.validacion === 'PENDING'">Pendiente</span>
+                        <span class="badge bg-danger" *ngIf="paymentuser?.validacion === 'REJECTED'">Rechazado</span>
                     </p>
                     <!-- <p><b>Txn Id:</b> {{pago.}}</p> -->
+
+                    <div class="card" *ngIf="user.role === 'SUPERADMIN' || user.role === 'ADMIN'">
+                        <div class="card-body">
+                            <!-- <h4 class="card-title" *ngIf="paymentSeleccionado">{{title}}: {{planSeleccionado.name}}</h4> -->
+                            <h4 class="card-title">Verificación</h4>
+                            <form class="form p-t-20 form-horizontal form-material" [formGroup]="paymentForm"
+                                (submit)="updatePago()">
+                                <div class="form-group" style="margin-bottom: 25px;">
+                                    <label for="exampleInputuname">Status<span class="required">*</span></label>
+                                    <div class="input-group">
+                                        <select name="" id="input" class="form-control" formControlName="status" required="required">
+                                      <option value="">Seleccione</option>
+                                      <option value="APPROVED">Aprobado</option>
+                                      <option value="PENDING">Pendiente</option>
+                                      <option value="REJECTED">Rechazado</option>
+                                    </select>
+                                    </div>
+                                </div>
+                                <div class="form-group" style="margin-bottom: 25px;">
+                                    <label for="exampleInputuname">Validación<span class="required">*</span></label>
+                                    <div class="input-group">
+                                        <select name="" id="input" class="form-control" formControlName="validacion"
+                                            required="required">
+                                            <option value="">Seleccione</option>
+                                            <option value="APROVED">Aprobado</option>
+                                            <option value="PENDING">Pendiente</option>
+                                            <option value="REJECTED">Rechazado</option>
+                                        </select>
+
+                                    </div>
+                                </div>
+
+                                <button type="submit"
+                                    class="btn btn-success waves-effect waves-light m-r-10 btn-block">
+                                    <i class="fa fa-save"></i> Guardar cambios
+                                </button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
+                
                 <div class="col-xs-12 col-sm-6">
 
 
-                    <div *ngIf="!payment.image">
+                    <div *ngIf="!paymentuser?.image">
                         <img src="./assets/images/no-image.jpg" class="image" class="shadow imagepago" alt="">
                     </div>
-                    <div *ngIf="payment.image">
-                        <img [src]="payment.image | imagenPipe: 'payments'" class="shadow imagepago" alt="">
+                    <div *ngIf="paymentuser?.image">
+                        <img [src]="paymentuser?.image | imagenPipe: 'payments'" class="shadow imagepago" alt="">
                     </div>
                 </div>
 
